@@ -1,6 +1,4 @@
-import e, { Router, response } from 'express'
-
-import * as db from '../db/fruits.ts'
+import { Router } from 'express'
 import request from 'superagent'
 import 'dotenv/config'
 
