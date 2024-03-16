@@ -20,10 +20,10 @@ export interface Cryptos {
 }
 
 export interface Quote {
-  USD: Usd
+  NZD: Nzd
 }
 
-export interface Usd {
+export interface Nzd {
   price: number
   volume_24h: number
   volume_change_24h: number
