@@ -1,26 +1,30 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCryptos } from '../apis/cryptosApi'
+import type { Cryptos } from '../../models/crypto'
 
 export default function Cryptos() {
-  const { data } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: ['cryptos'],
     queryFn: () => getCryptos(),
   })
 
-  const bitcoinData = data?.find((coin) => coin.id === 1)
-  const ethereumData = data?.find((coin) => coin.id === 1027)
+  if (isPending) {
+    return <p>Is Loading</p>
+  }
 
-  const newArr = [bitcoinData, ethereumData]
-
-  console.log(bitcoinData, ethereumData)
+  if (isError) {
+    return <p>Error</p>
+  }
+  const keysArray = Object.keys(data)
+  const dataArr = keysArray.map((key) => data[key] as Cryptos)
 
   return (
     <>
       <h1>Bitcoin -</h1>
-      {newArr.map((coin) => (
+      {dataArr.map((coin) => (
         <div key={coin.id}>
           <p>{coin.name}</p>
-          <p>{coin.quote.NZD.price}</p>
+          <p>{coin.quote[2802].price}</p>
         </div>
       ))}
     </>
