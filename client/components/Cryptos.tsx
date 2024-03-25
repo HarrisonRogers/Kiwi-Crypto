@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCryptos } from '../apis/cryptosApi'
 import type { Cryptos } from '../../models/crypto'
+import LoadingIndicator from './LoadingIndicator'
 
 export default function Cryptos() {
   const { data, isPending, isError } = useQuery({
@@ -9,7 +10,7 @@ export default function Cryptos() {
   })
 
   if (isPending) {
-    return <p>Is Loading</p>
+    return <LoadingIndicator />
   }
 
   if (isError) {
