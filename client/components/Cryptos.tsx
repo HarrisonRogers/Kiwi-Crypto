@@ -25,7 +25,7 @@ export default function Cryptos() {
       {dataArr.map((coin) => (
         <div key={coin.id}>
           <p>{coin.name}</p>
-          <p>{coin.quote[2802].price}</p>
+          <p>{coin.quote[2802].price?.toFixed(3)}</p>
         </div>
       ))}
     </>
