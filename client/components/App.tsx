@@ -1,11 +1,12 @@
-import Cryptos from './Cryptos'
+import { Outlet } from 'react-router-dom'
+import Nav from './Nav'
 
 function App() {
   return (
     <>
-      <h1>Cryptos in NZD</h1>
+      <Nav />
       <div>
-        <Cryptos />
+        <Outlet />
       </div>
     </>
   )
