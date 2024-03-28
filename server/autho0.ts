@@ -6,7 +6,7 @@ import jwks from 'jwks-rsa'
 
 // TODO: set the domain and audience (API Identifier)
 const domain = 'https://kiwi-crypto.au.auth0.com'
-const audience = 'https://fruits/api'
+const audience = 'https://kiwicrypto/api'
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({
