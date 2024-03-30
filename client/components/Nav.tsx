@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
@@ -19,6 +19,7 @@ export default function Nav() {
   const sendUserDataToBackend = async () => {
     try {
       const accessToken = await getAccessTokenSilently()
+      console.log(accessToken)
       const response = await fetch('/api/v1/callback', {
         method: 'POST',
         headers: {
@@ -35,9 +36,11 @@ export default function Nav() {
     }
   }
 
-  if (user) {
-    sendUserDataToBackend()
-  }
+  useEffect(() => {
+    if (user) {
+      sendUserDataToBackend()
+    }
+  }, [])
 
   return (
     <div className="container">

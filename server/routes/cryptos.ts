@@ -16,7 +16,6 @@ const authConfig = {
   baseURL: process.env.BASE_URL, // The base URL of your application
   clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
-  scope: 'openid email profile',
 }
 
 router.use(auth(authConfig))
@@ -63,7 +62,7 @@ router.post('/portfolio', checkJwt, async (req, res) => {
 
 // Check if authenticated and fetch their Id
 
-router.get('/callback', async (req, res) => {
+router.post('/callback', async (req, res) => {
   if (req.oidc.user) {
     const { sub: authOId } = req.oidc.user
 
