@@ -18,6 +18,7 @@ const authConfig = {
   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
 }
 
+// Get api Data
 router.get('/', async (req, res, next) => {
   try {
     const response = await request
@@ -33,6 +34,31 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// Add coin to portfolio
+router.post('/portfolio', async (req, res) => {
+  const { authOId, coinId, coinName, amount } = req.body
+
+  try {
+    const user = await db.getUserAuthId(authOId)
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' })
+    }
+
+    await knex('portfolios').insert({
+      user_id: user.id,
+      coin_id: coinId,
+      coin_name: coinName,
+      amount: amount,
+    })
+
+    res.status(201).json({ message: 'Coin added to portfolio' })
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' })
+  }
+})
+
+// Check if authenticated and fetch their Id
 router.use(auth(authConfig))
 
 router.get('/callback', checkJwt, async (req, res) => {
