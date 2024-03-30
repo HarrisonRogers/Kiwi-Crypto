@@ -16,7 +16,7 @@ const authConfig = {
   baseURL: process.env.BASE_URL, // The base URL of your application
   clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
-  scope: process.env.SCOPE,
+  scope: 'openid email profile',
 }
 
 router.use(auth(authConfig))
