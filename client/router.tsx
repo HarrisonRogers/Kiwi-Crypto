@@ -5,12 +5,13 @@ import {
   Route,
 } from 'react-router-dom'
 import App from './components/App'
-import Nav from './components/Nav'
+import Cryptos from './components/Cryptos'
 
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" element={<App />}>
-      {/* <Route index element={<Nav />} /> */}
+      <Route index element={<Cryptos />} />
+      {/* <Route path="/portfolio" element={<Portfolio />} /> */}
     </Route>,
   ]),
 )

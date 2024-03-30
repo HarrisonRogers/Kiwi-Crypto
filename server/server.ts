@@ -1,13 +1,12 @@
 import express from 'express'
 import * as Path from 'node:path'
-
-import cryptos from './routes/cryptos.ts'
+import router from './routes/cryptos'
 
 const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1/cryptos', cryptos)
+server.use('/api/v1', router)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

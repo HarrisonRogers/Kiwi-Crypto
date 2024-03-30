@@ -2,20 +2,21 @@ import { useQuery } from '@tanstack/react-query'
 import { getCryptos } from '../apis/cryptosApi'
 import type { Cryptos } from '../../models/crypto'
 import LoadingIndicator from './LoadingIndicator'
+import AddToPortfolioButton from './AddToPortfolioButton'
 
 export default function Cryptos() {
-  //   const { data, isPending, isError } = useQuery({
-  //     queryKey: ['cryptos'],
-  //     queryFn: () => getCryptos(),
-  //   })
+  // const { data, isPending, isError } = useQuery({
+  //   queryKey: ['cryptos'],
+  //   queryFn: () => getCryptos(),
+  // })
 
-  //   if (isPending) {
-  //     return <LoadingIndicator />
-  //   }
+  // if (isPending) {
+  //   return <LoadingIndicator />
+  // }
 
-  //   if (isError) {
-  //     return <p>Error</p>
-  //   }
+  // if (isError) {
+  //   return <p>Error</p>
+  // }
   //   const keysArray = Object.keys(data)
   //   const dataArr = keysArray.map((key) => data[key] as Cryptos)
 
@@ -71,6 +72,7 @@ export default function Cryptos() {
           <p>{coin.price}</p>
           <p>{coin.percent_change_24h}%</p>
           <p>{coin.market_cap}</p>
+          {/* <AddToPortfolioButton /> */}
         </div>
       ))}
     </>

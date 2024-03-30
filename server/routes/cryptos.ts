@@ -16,7 +16,10 @@ const authConfig = {
   baseURL: process.env.BASE_URL, // The base URL of your application
   clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
+  scope: process.env.SCOPE,
 }
+
+router.use(auth(authConfig))
 
 // Get api Data
 router.get('/', async (req, res, next) => {
@@ -35,7 +38,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // Add coin to portfolio
-router.post('/portfolio', async (req, res) => {
+router.post('/portfolio', checkJwt, async (req, res) => {
   const { authOId, coinId, coinName, amount } = req.body
 
   try {
@@ -59,24 +62,37 @@ router.post('/portfolio', async (req, res) => {
 })
 
 // Check if authenticated and fetch their Id
-router.use(auth(authConfig))
 
-router.get('/callback', checkJwt, async (req, res) => {
+router.get('/callback', async (req, res) => {
   if (req.oidc.user) {
     const { sub: authOId } = req.oidc.user
 
     // Check if user exists in db
-    const user = await db.getUserAuthId(authOId)
+    let user = await db.getUserAuthId(authOId)
 
     if (!user) {
       await knex('users').insert({
-        auhtO_id: authOId,
+        authO_id: authOId,
       })
+
+      user = await db.getUserAuthId(authOId)
     }
+
+    console.log(user)
 
     res.redirect('/portfolio')
   } else {
     res.redirect('/')
+  }
+})
+
+// User Profile
+router.get('/profile', checkJwt, (req, res) => {
+  // req.oidc.user contains the user profile information
+  if (req.oidc.user) {
+    res.json(req.oidc.user)
+  } else {
+    res.status(401).send('User not authenticated')
   }
 })
 
