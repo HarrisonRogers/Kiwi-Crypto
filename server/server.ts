@@ -7,7 +7,7 @@ const server = express()
 
 server.use(express.json())
 
-server.use('/api/v1', router)
+server.use('/api/v1/portfolios', router)
 
 // const test = await db.getAllCryptosInPortfolio()
 // console.log(test)

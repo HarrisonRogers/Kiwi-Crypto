@@ -41,11 +41,11 @@ export default function Nav() {
   }
 
   // If a user signs in
-  useEffect(() => {
-    if (user) {
-      sendUserDataToBackend()
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user) {
+  //     sendUserDataToBackend()
+  //   }
+  // }, [user])
 
   // Make search bar dissapear if not home
   useEffect(() => {

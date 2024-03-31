@@ -23,12 +23,14 @@ export default function Portfolio() {
 
   const portCryptos: Cryptos[] = data
 
+  console.log(portCryptos)
+
   return (
     <div>
       <ul>
         {portCryptos.map((coin) => (
           <li key={coin.id}>
-            <h2>{coin.name}</h2>
+            <p>{coin.name}</p>
           </li>
         ))}
       </ul>

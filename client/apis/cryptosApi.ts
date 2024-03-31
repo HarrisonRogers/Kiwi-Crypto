@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const rootURL = '/api/v1'
+const rootURL = '/api/v1/portfolios'
 
 export async function getCryptos() {
   const response = await request.get(rootURL)
