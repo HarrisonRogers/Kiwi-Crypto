@@ -9,8 +9,8 @@ server.use(express.json())
 
 server.use('/api/v1', router)
 
-const test = await db.getAllCryptosInPortfolio()
-console.log(test)
+// const test = await db.getAllCryptosInPortfolio()
+// console.log(test)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

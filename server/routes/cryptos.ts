@@ -60,6 +60,18 @@ router.post('/portfolio', checkJwt, async (req, res) => {
   }
 })
 
+// Gets portfolio coins
+router.get('/portfolio', async (req, res, next) => {
+  try {
+    const portfolioCoins = await db.getAllCryptosInPortfolio()
+
+    res.json(portfolioCoins)
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
 // Check if authenticated and fetch their Id
 
 router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
