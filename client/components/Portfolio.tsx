@@ -28,7 +28,7 @@ export default function Portfolio() {
 
   return (
     <div>
-      <ul>
+      <ul className="container">
         {portCryptos.map((coin) => (
           <li key={coin.id}>
             <p>{coin.name}</p>

@@ -58,6 +58,10 @@ p {
   width: 100%;
 }
 
+.nav {
+  margin: 0 2rem;
+}
+
 .nav-display {
   display: flex;
   align-items: center;

@@ -54,7 +54,7 @@ export default function Nav() {
 
   return (
     <div id="navbar">
-      <div className="container">
+      <div className="nav">
         <div className="nav-display">
           <Link to="/">
             <h2>KiwiCrypto</h2>

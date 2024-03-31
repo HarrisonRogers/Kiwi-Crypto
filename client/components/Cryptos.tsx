@@ -65,16 +65,17 @@ export default function Cryptos() {
           </p>
         </div>
       ))} */}
-
-      {data.map((coin) => (
-        <div key={coin.id}>
-          <h2>{coin.name}</h2>
-          <p>{coin.price}</p>
-          <p>{coin.percent_change_24h}%</p>
-          <p>{coin.market_cap}</p>
-          {/* <AddToPortfolioButton /> */}
-        </div>
-      ))}
+      <div className="container">
+        {data.map((coin) => (
+          <div key={coin.id}>
+            <h2>{coin.name}</h2>
+            <p>{coin.price}</p>
+            <p>{coin.percent_change_24h}%</p>
+            <p>{coin.market_cap}</p>
+            {/* <AddToPortfolioButton /> */}
+          </div>
+        ))}
+      </div>
     </>
   )
 }
