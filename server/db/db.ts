@@ -7,6 +7,10 @@ import connection from './connection.ts'
 
 const db = connection
 
+export async function getAllCryptosInPortfolio() {
+  return db('portfolios').select()
+}
+
 export async function getUserAuthId(id: string) {
   return db('users').where({ authO_id: id }).first()
 }
