@@ -8,7 +8,15 @@ import connection from './connection.ts'
 const db = connection
 
 export async function getAllCryptosInPortfolio() {
-  return db('portfolios').select('coin_name as name', 'coin_id as id')
+  return db('portfolios').select(
+    'coin_name as name',
+    'coin_id as id',
+    'price',
+    'percent_change_1h',
+    'percent_change_24h',
+    'percent_change_7d',
+    'market_cap',
+  )
 }
 
 export async function getUserAuthId(id: string) {

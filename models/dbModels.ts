@@ -4,9 +4,11 @@ export interface User {
 }
 
 export interface Portfolio {
-  id: number
-  user_id: number
-  coin_id: string
-  coin_name: string
-  amount: number
+  id: string
+  name: string
+  price: number
+  percent_change_1h: number
+  percent_change_24h: number
+  percent_change_7d: number
+  market_cap: number
 }
