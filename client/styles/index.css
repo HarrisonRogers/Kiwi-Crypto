@@ -1,8 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
+/* Utils */
 html,
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --primary-color: #05abd9;
+  --secondary-color: #57f3f3;
+  --third-color: #a0e3f3;
+  --light-color: #fffff3;
+  --dark-color: #00192b;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: auto;
+  width: 1500px;
+  padding: 0 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background: linear-gradient(
+    to bottom right,
+    var(--secondary-color),
+    var(--third-color),
+    var(--secondary-color)
+  );
+  color: var(--light-color);
+  cursor: pointer;
+  color: var(--dark-color);
+  transition: all 0.4s ease;
+
+  &:hover {
+    background-color: var(--dark-color);
+  }
+}
+
+/* Navbar */
+#navbar {
+  height: auto;
+  background-color: var(--primary-color);
+  width: 100%;
+}
+
+.nav-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  text-align: center;
+  color: var(--light-color);
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin: 10px 0px;
+    width: 75px;
+    border-radius: 50%;
+    display: flex;
+  }
+
+  button {
+    font-size: 0.6rem;
+  }
 }
 
 /* Loading indicator from https://css-loaders.com/dots-bars/ */

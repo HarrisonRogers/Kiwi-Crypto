@@ -43,18 +43,24 @@ export default function Nav() {
   }, [])
 
   return (
-    <div className="container">
-      <div className="navbar">
-        <h2>KiwiCrypto</h2>
-        <IfAuthenticated>
-          <button onClick={handleSignOut}>Sign Out</button>
-          {user && <img className="profile-img" src={user.picture} />}
-          {user && <p>{user.sub}</p>}
-          {user && <p>{user.name}</p>}
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <button onClick={handleSignIn}>Sign In</button>
-        </IfNotAuthenticated>
+    <div id="navbar">
+      <div className="container">
+        <div className="nav-display">
+          <h2>KiwiCrypto</h2>
+          <div className="nav-right">
+            <IfAuthenticated>
+              {user && <img className="profile-img" src={user.picture} />}
+              <button className="btn" onClick={handleSignOut}>
+                Sign Out
+              </button>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <button className="btn" onClick={handleSignIn}>
+                Sign In
+              </button>
+            </IfNotAuthenticated>
+          </div>
+        </div>
       </div>
     </div>
   )
