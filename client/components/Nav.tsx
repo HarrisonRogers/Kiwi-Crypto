@@ -47,7 +47,7 @@ export default function Nav() {
   //   }
   // }, [user])
 
-  // Make search bar dissapear if not home
+  // Make search bar disappear if not home
   useEffect(() => {
     setShowSearchBar(location.pathname === '/')
   }, [location.pathname])
@@ -63,9 +63,11 @@ export default function Nav() {
             {showSeachBar && (
               <input type="text" placeholder="Search for Crypto" />
             )}
-            <Link to="/portfolio">
-              <button className="btn">Portfolio</button>
-            </Link>
+            <IfAuthenticated>
+              <Link to="/portfolio">
+                {showSeachBar && <button className="btn">Portfolio</button>}
+              </Link>
+            </IfAuthenticated>
           </div>
           <div className="nav-right">
             <IfAuthenticated>

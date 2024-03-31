@@ -38,7 +38,16 @@ router.get('/', async (req, res, next) => {
 
 // Add coin to portfolio
 router.post('/portfolio', checkJwt, async (req, res) => {
-  const { authOId, coinId, coinName, amount } = req.body
+  const {
+    authOId,
+    coinId,
+    coinName,
+    price,
+    percent_change_1h,
+    percent_change_24h,
+    percent_change_7d,
+    market_cap,
+  } = req.body
 
   try {
     const user = await db.getUserAuthId(authOId)
@@ -51,7 +60,11 @@ router.post('/portfolio', checkJwt, async (req, res) => {
       user_id: user.id,
       coin_id: coinId,
       coin_name: coinName,
-      amount: amount,
+      price: price,
+      percent_change_1h: percent_change_1h,
+      percent_change_24h: percent_change_24h,
+      percent_change_7d: percent_change_7d,
+      market_cap: market_cap,
     })
 
     res.status(201).json({ message: 'Coin added to portfolio' })

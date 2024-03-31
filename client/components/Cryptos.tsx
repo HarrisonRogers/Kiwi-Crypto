@@ -65,6 +65,7 @@ export default function Cryptos() {
           </p>
         </div>
       ))} */}
+
       <div className="container">
         {data.map((coin) => (
           <div key={coin.id}>
