@@ -8,5 +8,5 @@ import connection from './connection.ts'
 const db = connection
 
 export async function getUserAuthId(id: string) {
-  return db('users').where({ auth0_id: id }).first()
+  return db('users').where({ authO_id: id }).first()
 }

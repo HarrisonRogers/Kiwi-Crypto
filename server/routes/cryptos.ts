@@ -4,21 +4,21 @@ import * as db from '../db/db.ts'
 import { auth } from 'express-openid-connect'
 import 'dotenv/config'
 import knex from 'knex'
-import checkJwt from '../autho0.ts'
+import checkJwt, { JwtRequest } from '../autho0.ts'
 
 const router = express.Router()
 const apiKey = process.env.CRYPTO_API_KEY
 
-const authConfig = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET, // A long, secret string to encrypt session cookies
-  baseURL: process.env.BASE_URL, // The base URL of your application
-  clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
-  issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
-}
+// const authConfig = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: process.env.SECRET, // A long, secret string to encrypt session cookies
+//   baseURL: process.env.BASE_URL, // The base URL of your application
+//   clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
+//   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
+// }
 
-router.use(auth(authConfig))
+// router.use(auth(authConfig))
 
 // Get api Data
 router.get('/', async (req, res, next) => {
@@ -62,27 +62,25 @@ router.post('/portfolio', checkJwt, async (req, res) => {
 
 // Check if authenticated and fetch their Id
 
-router.post('/callback', async (req, res) => {
-  if (req.oidc.user) {
-    const { sub: authOId } = req.oidc.user
+router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
+  const authOId = req.auth?.sub as string
 
-    // Check if user exists in db
-    let user = await db.getUserAuthId(authOId)
+  console.log(authOId)
 
-    if (!user) {
-      await knex('users').insert({
-        authO_id: authOId,
-      })
+  // Check if user exists in db
+  let user = await db.getUserAuthId(authOId)
 
-      user = await db.getUserAuthId(authOId)
-    }
+  if (!user) {
+    await knex('users').insert({
+      authO_id: authOId,
+    })
 
-    console.log(user)
-
-    res.redirect('/portfolio')
-  } else {
-    res.redirect('/')
+    user = await db.getUserAuthId(authOId)
   }
+
+  console.log(user)
+
+  res.sendStatus(200)
 })
 
 // User Profile

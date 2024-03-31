@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Nav() {
+  const location = useLocation()
+  const [showSeachBar, setShowSearchBar] = useState(true)
   const { user, loginWithRedirect, logout, getAccessTokenSilently } = useAuth0()
 
   // Handle sign out
@@ -16,6 +19,7 @@ export default function Nav() {
     return loginWithRedirect()
   }
 
+  // Send data back to a user
   const sendUserDataToBackend = async () => {
     try {
       const accessToken = await getAccessTokenSilently()
@@ -26,7 +30,7 @@ export default function Nav() {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userSub: user?.sub }),
+        body: JSON.stringify({}),
       })
 
       const responseData = await response.json()
@@ -36,17 +40,33 @@ export default function Nav() {
     }
   }
 
+  // If a user signs in
   useEffect(() => {
     if (user) {
       sendUserDataToBackend()
     }
-  }, [])
+  }, [user])
+
+  // Make search bar dissapear if not home
+  useEffect(() => {
+    setShowSearchBar(location.pathname === '/')
+  }, [location.pathname])
 
   return (
     <div id="navbar">
       <div className="container">
         <div className="nav-display">
-          <h2>KiwiCrypto</h2>
+          <Link to="/">
+            <h2>KiwiCrypto</h2>
+          </Link>
+          <div className="nav-middle">
+            {showSeachBar && (
+              <input type="text" placeholder="Search for Crypto" />
+            )}
+            <Link to="/portfolio">
+              <button className="btn">Portfolio</button>
+            </Link>
+          </div>
           <div className="nav-right">
             <IfAuthenticated>
               {user && <img className="profile-img" src={user.picture} />}
