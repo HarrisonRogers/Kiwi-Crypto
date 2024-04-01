@@ -20,5 +20,5 @@ export async function getAllCryptosInPortfolio() {
 }
 
 export async function getUserAuthId(id: string) {
-  return db('users').where({ authO_id: id }).first()
+  return db('portfolios').where({ authO_id: id }).first()
 }

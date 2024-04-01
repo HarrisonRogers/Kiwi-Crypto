@@ -38,38 +38,29 @@ router.get('/', async (req, res, next) => {
 
 // Add coin to portfolio
 router.post('/portfolio', checkJwt, async (req, res) => {
-  const {
-    authOId,
-    coinId,
-    coinName,
-    price,
-    percent_change_1h,
-    percent_change_24h,
-    percent_change_7d,
-    market_cap,
-  } = req.body
+  const { authO_id, id, name, quote } = req.body
 
   try {
-    const user = await db.getUserAuthId(authOId)
-    console.log(user)
+    const user = await db.getUserAuthId(authO_id)
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
 
     await knex('portfolios').insert({
-      authO_id: authOId,
-      coin_id: coinId,
-      coin_name: coinName,
-      price: price,
-      percent_change_1h: percent_change_1h,
-      percent_change_24h: percent_change_24h,
-      percent_change_7d: percent_change_7d,
-      market_cap: market_cap,
+      authO_id: authO_id,
+      coin_id: id,
+      coin_name: name,
+      price: quote[2802].price,
+      percent_change_1h: quote[2802].percent_change_1h,
+      percent_change_24h: quote[2802].percent_change_24h,
+      percent_change_7d: quote[2802].percent_change_7d,
+      market_cap: quote[2802].market_cap,
     })
 
     res.status(201).json({ message: 'Coin added to portfolio' })
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Internal server error' })
   }
 })
