@@ -8,16 +8,6 @@ export default function AddToPortfolioButton({ coin }) {
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
   const [authO_id, setAuthOId] = useState('')
-  // const [addCrypto, setAddCrypto] = useState({
-  //   id: '',
-  //   authO_id: '',
-  //   name: '',
-  //   price: 0,
-  //   percent_change_1h: 0,
-  //   percent_change_24h: 0,
-  //   percent_change_7d: 0,
-  //   market_cap: 0,
-  // })
 
   useEffect(() => {
     if (user && user.sub) {
