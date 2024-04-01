@@ -27,7 +27,6 @@ export default function AddToPortfolioButton({ coin }) {
     try {
       const token = await getAccessTokenSilently()
       const cryptoToAdd = { ...coin, authO_id }
-      console.log(cryptoToAdd)
       mutation.mutate({ crypto: cryptoToAdd, token })
     } catch (error) {
       console.error('Error getting token: ', error)
