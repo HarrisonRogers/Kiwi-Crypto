@@ -47,7 +47,7 @@ router.post('/portfolio', checkJwt, async (req, res) => {
       return res.status(404).json({ message: 'User not found' })
     }
 
-    await knex('portfolios').insert({
+    const cryptoDetails = {
       authO_id: authO_id,
       coin_id: id,
       coin_name: name,
@@ -56,9 +56,21 @@ router.post('/portfolio', checkJwt, async (req, res) => {
       percent_change_24h: quote[2802].percent_change_24h,
       percent_change_7d: quote[2802].percent_change_7d,
       market_cap: quote[2802].market_cap,
-    })
+    }
 
-    res.status(201).json({ message: 'Coin added to portfolio' })
+    const crypto = await db.addCryptoToPortfolioWithPost(
+      cryptoDetails.authO_id,
+      cryptoDetails.coin_id,
+      cryptoDetails.coin_name,
+      cryptoDetails.price,
+      cryptoDetails.percent_change_1h,
+      cryptoDetails.percent_change_24h,
+      cryptoDetails.percent_change_7d,
+      cryptoDetails.market_cap,
+    )
+    console.log(crypto)
+
+    res.status(201).json(crypto)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Internal server error' })
