@@ -19,6 +19,7 @@ const db = connection
 
 export async function getAllCryptosInPortfolio() {
   return db('portfolios').select(
+    'authO_id',
     'coin_name as name',
     'coin_id as id',
     'price',
