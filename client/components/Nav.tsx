@@ -20,25 +20,24 @@ export default function Nav() {
   }
 
   // Send data back to a user
-  const sendUserDataToBackend = async () => {
-    try {
-      const accessToken = await getAccessTokenSilently()
-      console.log(accessToken)
-      const response = await fetch('/api/v1/callback', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({}),
-      })
+  // const sendUserDataToBackend = async () => {
+  //   try {
+  //     const accessToken = await getAccessTokenSilently()
+  //     const response = await fetch('/api/v1/callback', {
+  //       method: 'POST',
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({}),
+  //     })
 
-      const responseData = await response.json()
-      console.log(responseData)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  //     const responseData = await response.json()
+  //     console.log(responseData)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   // If a user signs in
   // useEffect(() => {

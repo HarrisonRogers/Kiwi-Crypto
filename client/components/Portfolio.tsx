@@ -24,8 +24,6 @@ export default function Portfolio() {
 
   const portCryptos: CryptoData[] = data
 
-  console.log(portCryptos)
-
   return (
     <div>
       <ul className="container">

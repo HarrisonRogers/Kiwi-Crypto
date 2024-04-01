@@ -68,7 +68,6 @@ router.post('/portfolio', checkJwt, async (req, res) => {
       cryptoDetails.percent_change_7d,
       cryptoDetails.market_cap,
     )
-    console.log(crypto)
 
     res.status(201).json(crypto)
   } catch (error) {
@@ -93,8 +92,6 @@ router.get('/portfolio', async (req, res, next) => {
 router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
   const authOId = req.auth?.sub as string
 
-  console.log(authOId)
-
   // Check if user exists in db
   let user = await db.getUserAuthId(authOId)
 
@@ -105,8 +102,6 @@ router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
 
     user = await db.getUserAuthId(authOId)
   }
-
-  console.log(user)
 
   res.sendStatus(200)
 })
