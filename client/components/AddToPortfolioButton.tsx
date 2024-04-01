@@ -1,30 +1,54 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { addCryptoToPortfolio, getCryptos } from '../apis/cryptosApi'
-import type { Cryptos } from '../../models/crypto'
-import { useState } from 'react'
-import { Portfolio } from '../../models/dbModels'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useEffect, useState } from 'react'
+import { Portfolio, AuthOID } from '../../models/dbModels'
 
-export default function AddToPortfolioButton() {
-  const [addCrypto, setAddCrypto] = useState({
-    id: '',
-    name: '',
-    price: 0,
-    percent_change_1h: 0,
-    percent_change_24h: 0,
-    percent_change_7d: 0,
-    market_cap: 0,
-  })
-
+export default function AddToPortfolioButton({ coin }) {
   const queryClient = useQueryClient()
+  const { getAccessTokenSilently, user } = useAuth0()
+  const [authO_id, setAuthOId] = useState('')
+  // const [addCrypto, setAddCrypto] = useState({
+  //   id: '',
+  //   authO_id: '',
+  //   name: '',
+  //   price: 0,
+  //   percent_change_1h: 0,
+  //   percent_change_24h: 0,
+  //   percent_change_7d: 0,
+  //   market_cap: 0,
+  // })
+
+  useEffect(() => {
+    if (user && user.sub) {
+      setAuthOId(user.sub)
+    }
+  }, [user])
+
   const mutation = useMutation({
-    mutationFn: (crypto: Portfolio) => addCryptoToPortfolio(crypto),
+    mutationFn: addCryptoToPortfolio,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coins'] })
     },
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutation.mutate(addCrypto)
+    try {
+      const token = await getAccessTokenSilently()
+      const cryptoToAdd = { ...coin, authO_id }
+      console.log(cryptoToAdd)
+      mutation.mutate({ crypto: cryptoToAdd, token })
+    } catch (error) {
+      console.error('Error getting token: ', error)
+    }
   }
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <button className="btn">Add to Portfolio</button>
+      </form>
+    </>
+  )
 }

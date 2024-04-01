@@ -51,13 +51,14 @@ router.post('/portfolio', checkJwt, async (req, res) => {
 
   try {
     const user = await db.getUserAuthId(authOId)
+    console.log(user)
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
 
     await knex('portfolios').insert({
-      user_id: user.id,
+      authO_id: authOId,
       coin_id: coinId,
       coin_name: coinName,
       price: price,
@@ -80,8 +81,7 @@ router.get('/portfolio', async (req, res, next) => {
 
     res.json(portfolioCoins)
   } catch (error) {
-    console.log(error)
-    next(error)
+    console.error(error)
   }
 })
 

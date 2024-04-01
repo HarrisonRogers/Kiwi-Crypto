@@ -13,7 +13,16 @@ export async function getCryptosInPortfolio() {
   return response.body
 }
 
-export async function addCryptoToPortfolio(crypto: Portfolio) {
-  const response = await request.post(`${rootURL}/portfolio`).send(crypto)
+export async function addCryptoToPortfolio({
+  crypto,
+  token,
+}: {
+  crypto: Portfolio
+  token: string
+}) {
+  const response = await request
+    .post(`${rootURL}/portfolio`)
+    .send(crypto)
+    .set('Authorization', `Bearer ${token}`)
   return response.body
 }
