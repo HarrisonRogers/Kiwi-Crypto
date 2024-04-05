@@ -30,6 +30,18 @@ export async function getAllCryptosInPortfolio() {
   )
 }
 
+export async function checkPortfolioForCrypto(
+  authO_id: string,
+  coin_id: string,
+) {
+  const numberOfCryptos = await db('portfolios')
+    .where({ authO_id, coin_id })
+    .count({ count: '*' })
+    .first()
+  const coinExists = numberOfCryptos?.count !== 0
+  return coinExists
+}
+
 export async function getUserAuthId(id: string) {
   return db('portfolios').where({ authO_id: id }).first()
 }

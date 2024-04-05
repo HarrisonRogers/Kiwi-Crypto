@@ -41,10 +41,12 @@ router.post('/portfolio', checkJwt, async (req, res) => {
   const { authO_id, id, name, quote } = req.body
 
   try {
-    const user = await db.getUserAuthId(authO_id)
+    // const user = await db.getUserAuthId(authO_id)
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' })
+    const coinExists = await db.checkPortfolioForCrypto(authO_id, id)
+    if (coinExists) {
+      res.sendStatus(201)
+      return
     }
 
     const cryptoDetails = {

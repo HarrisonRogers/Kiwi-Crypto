@@ -28,5 +28,16 @@ export async function seed(knex) {
       percent_change_7d: 120,
       market_cap: 123235875850,
     },
+    {
+      id: 3,
+      authO_id: 'google-oauth2|118265131578351540850',
+      coin_id: 1027,
+      coin_name: 'Ethereum',
+      price: 6034.45,
+      percent_change_1h: 15,
+      percent_change_24h: 80,
+      percent_change_7d: 120,
+      market_cap: 123235875850,
+    },
   ])
 }

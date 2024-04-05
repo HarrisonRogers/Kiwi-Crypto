@@ -7,13 +7,13 @@ import { Portfolio, AuthOID } from '../../models/dbModels'
 export default function AddToPortfolioButton({ coin }) {
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
-  const [authO_id, setAuthOId] = useState('')
+  // const [authO_id, setAuthOId] = useState('')
 
-  useEffect(() => {
-    if (user && user.sub) {
-      setAuthOId(user.sub)
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user && user.sub) {
+  //     setAuthOId(user.sub)
+  //   }
+  // }, [user])
 
   const mutation = useMutation({
     mutationFn: addCryptoToPortfolio,
@@ -25,9 +25,11 @@ export default function AddToPortfolioButton({ coin }) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
+      const authO_id = user?.sub
       const token = await getAccessTokenSilently()
       const cryptoToAdd = { ...coin, authO_id }
       mutation.mutate({ crypto: cryptoToAdd, token })
+      console.log(token, authO_id)
     } catch (error) {
       console.error('Error getting token: ', error)
     }
