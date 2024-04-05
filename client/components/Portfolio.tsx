@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCryptosInPortfolio } from '../apis/cryptosApi'
 import LoadingIndicator from './LoadingIndicator'
-import { Cryptos } from '../../models/crypto'
 import { Portfolio as CryptoData } from '../../models/dbModels'
 import { useAuth0 } from '@auth0/auth0-react'
 
