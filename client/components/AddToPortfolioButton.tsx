@@ -1,20 +1,13 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { addCryptoToPortfolio, getCryptos } from '../apis/cryptosApi'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { addCryptoToPortfolio } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useEffect, useState } from 'react'
-import { Portfolio, AuthOID } from '../../models/dbModels'
+import { Portfolio } from '../../models/dbModels'
 
 export default function AddToPortfolioButton({ coin }) {
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
-  // const [authO_id, setAuthOId] = useState('')
 
-  // useEffect(() => {
-  //   if (user && user.sub) {
-  //     setAuthOId(user.sub)
-  //   }
-  // }, [user])
-
+  // Post a crypto to portfolio
   const mutation = useMutation({
     mutationFn: addCryptoToPortfolio,
     onSuccess: () => {
@@ -22,6 +15,7 @@ export default function AddToPortfolioButton({ coin }) {
     },
   })
 
+  // Handle submit button which gets access token to put in users own portfolio
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {

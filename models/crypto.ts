@@ -55,3 +55,15 @@ export enum Category {
   Others = 'OTHERS',
   Platform = 'PLATFORM',
 }
+
+export interface Coin {
+  id: number
+  authO_id: string
+  coin_id: number
+  coin_name: string
+  price: number
+  percent_change_1h: number
+  percent_change_24h: number
+  percent_change_7d: number
+  market_cap: number
+}

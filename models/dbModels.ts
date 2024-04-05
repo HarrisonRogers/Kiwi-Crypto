@@ -5,7 +5,7 @@ export interface User {
 
 export interface Portfolio {
   id: string
-  authO_id: string
+  authO_id: string | undefined
   name: string
   price: number
   percent_change_1h: number
@@ -16,4 +16,16 @@ export interface Portfolio {
 
 export interface AuthOID {
   authO_id: string
+}
+
+export interface Coin {
+  id: number
+  authO_id: string
+  coin_id: number
+  coin_name: string
+  price: number
+  percent_change_1h: number
+  percent_change_24h: number
+  percent_change_7d: number
+  market_cap: number
 }
