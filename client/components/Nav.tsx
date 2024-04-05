@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 export default function Nav() {
   const location = useLocation()
   const [showSeachBar, setShowSearchBar] = useState(true)
-  const { user, loginWithRedirect, logout, getAccessTokenSilently } = useAuth0()
+  const { user, loginWithRedirect, logout } = useAuth0()
 
   // Handle sign out
   const handleSignOut = () => {
@@ -18,33 +18,6 @@ export default function Nav() {
   const handleSignIn = () => {
     return loginWithRedirect()
   }
-
-  // Send data back to a user
-  // const sendUserDataToBackend = async () => {
-  //   try {
-  //     const accessToken = await getAccessTokenSilently()
-  //     const response = await fetch('/api/v1/callback', {
-  //       method: 'POST',
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({}),
-  //     })
-
-  //     const responseData = await response.json()
-  //     console.log(responseData)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // If a user signs in
-  // useEffect(() => {
-  //   if (user) {
-  //     sendUserDataToBackend()
-  //   }
-  // }, [user])
 
   // Make search bar disappear if not home
   useEffect(() => {

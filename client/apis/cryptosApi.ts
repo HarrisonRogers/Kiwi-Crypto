@@ -20,7 +20,6 @@ export async function addCryptoToPortfolio({
   crypto: Portfolio
   token: string
 }) {
-  console.log(crypto)
   const response = await request
     .post(`${rootURL}/portfolio`)
     .send(crypto)

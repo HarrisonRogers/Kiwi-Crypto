@@ -12,7 +12,6 @@ export default function Portfolio() {
     queryKey: ['portfolio coins', user?.sub],
     queryFn: async () => {
       const allCoins = await getCryptosInPortfolio()
-      console.log(allCoins)
       return allCoins.filter((coin: CryptoData) => coin.authO_id == user?.sub)
     },
   })
