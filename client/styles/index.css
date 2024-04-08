@@ -12,6 +12,7 @@ body {
   --third-color: #a0e3f3;
   --light-color: #fffff3;
   --dark-color: #00192b;
+  --text-color: #363636;
 }
 
 p {
@@ -35,31 +36,29 @@ p {
   padding: 10px 15px;
   border-radius: 5px;
   margin: 10px 0;
-  background: linear-gradient(
-    to bottom right,
-    var(--secondary-color),
-    var(--third-color),
-    var(--secondary-color)
-  );
-  color: var(--light-color);
+  background: var(--secondary-color);
+  color: var(--text-color);
   cursor: pointer;
-  color: var(--dark-color);
   transition: all 0.4s ease;
 }
 
 .btn:hover {
-  background-color: var(--dark-color);
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
 
 /* Navbar */
 #navbar {
-  height: auto;
   background-color: var(--primary-color);
   width: 100%;
 }
 
 .nav {
-  margin: 0 2rem;
+  margin: 0 2rem 4rem 2rem;
+  height: 146px;
 }
 
 .nav-display {
@@ -67,6 +66,7 @@ p {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  top: 0;
   text-align: center;
   color: var(--light-color);
 }
@@ -85,6 +85,27 @@ p {
 
   button {
     font-size: 0.6rem;
+  }
+}
+
+.nav-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Search bar */
+.search-bar {
+  padding: 0.7rem;
+  border-radius: 50px;
+  border: none;
+  width: 250px;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
   }
 }
 

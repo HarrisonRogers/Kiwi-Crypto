@@ -28,22 +28,25 @@ export default function Nav() {
     <div id="navbar">
       <div className="nav">
         <div className="nav-display">
-          <Link to="/">
-            <h2>KiwiCrypto</h2>
-          </Link>
+          <div className="logo">
+            <Link to="/">
+              <i className="fa-solid fa-kiwi-bird"></i>
+              <h2>KiwiCrypto</h2>
+            </Link>
+          </div>
           <div className="nav-middle">
-            {showSeachBar && (
-              <input type="text" placeholder="Search for Crypto" />
-            )}
-            <IfAuthenticated>
-              <Link to="/portfolio">
-                {showSeachBar && <button className="btn">Portfolio</button>}
-              </Link>
-            </IfAuthenticated>
+            <input
+              className="search-bar"
+              type="text"
+              placeholder="Search for Crypto"
+            />
           </div>
           <div className="nav-right">
             <IfAuthenticated>
               {user && <img className="profile-img" src={user.picture} />}
+              <Link to="/portfolio">
+                {showSeachBar && <button className="btn">Portfolio</button>}
+              </Link>
               <button className="btn" onClick={handleSignOut}>
                 Sign Out
               </button>

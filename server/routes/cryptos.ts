@@ -1,7 +1,6 @@
 import express from 'express'
 import request from 'superagent'
 import * as db from '../db/db.ts'
-import { auth } from 'express-openid-connect'
 import 'dotenv/config'
 import knex from 'knex'
 import checkJwt, { JwtRequest } from '../autho0.ts'

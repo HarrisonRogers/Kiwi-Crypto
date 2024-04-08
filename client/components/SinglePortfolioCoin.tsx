@@ -35,11 +35,11 @@ export default function SinglePortfolioCoin() {
       {uniqueCoinsArr.map((coin) => (
         <li key={coin.id}>
           <p>{coin.name}</p>
-          <p>{coin.price}</p>
-          <p>{coin.percent_change_1h}</p>
-          <p>{coin.percent_change_24h}</p>
-          <p>{coin.percent_change_7d}</p>
-          <p>{coin.market_cap}</p>
+          <p>{coin.price.toFixed(3)}</p>
+          <p>{coin.percent_change_1h.toFixed(2)}%</p>
+          <p>{coin.percent_change_24h.toFixed(2)}%</p>
+          <p>{coin.percent_change_7d.toFixed(2)}%</p>
+          <p>{coin.market_cap.toFixed(0)}</p>
           <DeleteButton id={Number(coin.id)} />
         </li>
       ))}

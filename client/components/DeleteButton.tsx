@@ -16,5 +16,9 @@ export default function DeleteButton({ id }: Id) {
     mutation.mutate()
   }
 
-  return <button onClick={handleClick}>x</button>
+  return (
+    <button className="btn" onClick={handleClick}>
+      x
+    </button>
+  )
 }
