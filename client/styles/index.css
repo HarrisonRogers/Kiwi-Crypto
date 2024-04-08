@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Utils */
 html,
 body {
@@ -71,6 +75,14 @@ p {
   color: var(--light-color);
 }
 
+.nav-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 .nav-right {
   display: flex;
   flex-direction: column;
@@ -88,12 +100,33 @@ p {
   }
 }
 
-.nav-middle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.drop-down-profile {
+  position: absolute;
+  top: 5.6rem;
+  width: 80px;
+  padding: 3px 6px;
+  border-radius: 15px;
+  background-color: var(--light-color);
+  /* border: 1px solid grey; */
+
+  & button {
+    border: none;
+    font-family: inherit;
+    background: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+}
+
+.drop-down-profile::before {
+  content: '';
+  position: absolute;
+  top: -0.15rem;
+  right: 2.12rem;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background-color: white;
 }
 
 /* Search bar */
