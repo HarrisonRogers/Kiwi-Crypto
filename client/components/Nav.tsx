@@ -12,8 +12,9 @@ export default function Nav() {
         <div className="nav-display">
           <div className="logo">
             <Link to="/">
-              <i className="fa-solid fa-kiwi-bird"></i>
-              <h2>KiwiCrypto</h2>
+              <h2>
+                <i className="fa-solid fa-kiwi-bird"></i> KiwiCrypto
+              </h2>
             </Link>
           </div>
           <div className="nav-middle">

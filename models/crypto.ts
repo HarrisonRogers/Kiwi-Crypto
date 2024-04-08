@@ -1,24 +1,30 @@
-export interface Cryptos {
+export interface Crypto {
   id: number
   name: string
   symbol: string
   slug: string
   num_market_pairs: number
   date_added: Date
-  tags: Tag[]
+  tags: string[]
   max_supply: number | null
-  circulating_supply: number | number
+  circulating_supply: number
   total_supply: number
-  is_active: number
   infinite_supply: boolean
-  platform: null
-  cmc_rank: number | null
-  is_fiat: number
+  platform: Platform | null
+  cmc_rank: number
   self_reported_circulating_supply: number | null
   self_reported_market_cap: number | null
-  tvl_ratio: null
+  tvl_ratio: number | null
   last_updated: Date
   quote: Quote
+}
+
+export interface Platform {
+  id: number
+  name: string
+  symbol: string
+  slug: string
+  token_address: string
 }
 
 export interface Quote {
@@ -26,7 +32,7 @@ export interface Quote {
 }
 
 export interface The2802 {
-  price: number | null
+  price: number
   volume_24h: number
   volume_change_24h: number
   percent_change_1h: number
@@ -35,35 +41,9 @@ export interface The2802 {
   percent_change_30d: number
   percent_change_60d: number
   percent_change_90d: number
-  market_cap: number | null
+  market_cap: number
   market_cap_dominance: number
   fully_diluted_market_cap: number
-  tvl: null
+  tvl: number | null
   last_updated: Date
-}
-
-export interface Tag {
-  slug: string
-  name: string
-  category: Category
-}
-
-export enum Category {
-  Algorithm = 'ALGORITHM',
-  Category = 'CATEGORY',
-  Industry = 'INDUSTRY',
-  Others = 'OTHERS',
-  Platform = 'PLATFORM',
-}
-
-export interface Coin {
-  id: number
-  authO_id: string
-  coin_id: number
-  coin_name: string
-  price: number
-  percent_change_1h: number
-  percent_change_24h: number
-  percent_change_7d: number
-  market_cap: number
 }

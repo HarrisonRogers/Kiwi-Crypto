@@ -12,10 +12,12 @@ const apiKey = process.env.CRYPTO_API_KEY
 router.get('/', async (req, res, next) => {
   try {
     const response = await request
-      .get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest')
+      .get(
+        'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+      )
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .set('X-CMC_PRO_API_KEY', apiKey!)
-      .query({ id: '1,1027,3,4,8,79,7', convert_id: '2802' })
+      .query({ start: '1', limit: '100', convert_id: '2802' })
 
     res.json(response.body.data)
   } catch (error) {

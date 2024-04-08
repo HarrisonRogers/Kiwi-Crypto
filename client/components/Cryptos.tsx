@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getCryptos } from '../apis/cryptosApi'
-import type { Cryptos } from '../../models/crypto'
+import type { Crypto } from '../../models/crypto'
 import LoadingIndicator from './LoadingIndicator'
 import AddToPortfolioButton from './AddToPortfolioButton'
 
@@ -18,7 +18,7 @@ export default function Cryptos() {
     return <p>Error</p>
   }
   const keysArray = Object.keys(data)
-  const dataArr = keysArray.map((key) => data[key] as Cryptos)
+  const dataArr = keysArray.map((key) => data[key] as Crypto)
 
   return (
     <>

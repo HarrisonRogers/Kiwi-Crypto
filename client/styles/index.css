@@ -75,6 +75,38 @@ p {
   color: var(--light-color);
 }
 
+/* Logo */
+.logo {
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  & a {
+    text-decoration: none;
+  }
+
+  & h2 {
+    text-decoration: none;
+    color: var(--third-color);
+    font-size: 1.2rem;
+  }
+
+  & i {
+    /* color: var(--secondary-color); */
+    display: inline;
+    font-size: 1.7rem;
+  }
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Search bar */
+
 .nav-middle {
   display: flex;
   flex-direction: column;
@@ -83,6 +115,19 @@ p {
   height: 100%;
 }
 
+.search-bar {
+  padding: 0.7rem;
+  border-radius: 50px;
+  border: none;
+  width: 250px;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Profile */
 .nav-right {
   display: flex;
   flex-direction: column;
@@ -123,19 +168,6 @@ p {
   height: 10px;
   transform: rotate(45deg);
   background-color: var(--light-color);
-}
-
-/* Search bar */
-.search-bar {
-  padding: 0.7rem;
-  border-radius: 50px;
-  border: none;
-  width: 250px;
-  font-family: inherit;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 /* Loading indicator from https://css-loaders.com/dots-bars/ */
