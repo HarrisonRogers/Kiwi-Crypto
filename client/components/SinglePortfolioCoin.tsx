@@ -3,12 +3,13 @@ import { getCryptosInPortfolio } from '../apis/cryptosApi'
 import LoadingIndicator from './LoadingIndicator'
 import { Portfolio as CryptoData } from '../../models/dbModels'
 import { useAuth0 } from '@auth0/auth0-react'
+import DeleteButton from './DeleteButton'
 
-export default function SinglePortfolioCoin(props: CryptoData) {
+export default function SinglePortfolioCoin() {
   const { user } = useAuth0()
 
   const { isPending, isError, data } = useQuery({
-    queryKey: ['portfolio coins', user?.sub],
+    queryKey: ['portfolio coin', user?.sub],
     queryFn: async () => {
       const allCoins = await getCryptosInPortfolio()
       return allCoins.filter((coin: CryptoData) => coin.authO_id == user?.sub)
@@ -39,7 +40,7 @@ export default function SinglePortfolioCoin(props: CryptoData) {
           <p>{coin.percent_change_24h}</p>
           <p>{coin.percent_change_7d}</p>
           <p>{coin.market_cap}</p>
-          <DeleteButton id={props.id} />
+          <DeleteButton id={Number(coin.id)} />
         </li>
       ))}
     </>
