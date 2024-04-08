@@ -93,6 +93,7 @@ p {
     width: 75px;
     border-radius: 50%;
     display: flex;
+    cursor: pointer;
   }
 
   button {
@@ -100,33 +101,28 @@ p {
   }
 }
 
-.drop-down-profile {
-  position: absolute;
-  top: 5.6rem;
-  width: 80px;
-  padding: 3px 6px;
-  border-radius: 15px;
+.logout-btn {
   background-color: var(--light-color);
-  /* border: 1px solid grey; */
 
   & button {
     border: none;
     font-family: inherit;
     background: none;
     font-size: 0.7rem;
+    padding: 10px 10px;
     cursor: pointer;
   }
 }
 
-.drop-down-profile::before {
+.logout-btn::before {
   content: '';
   position: absolute;
-  top: -0.15rem;
-  right: 2.12rem;
+  top: 6.3rem;
+  right: 4rem;
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
-  background-color: white;
+  background-color: var(--light-color);
 }
 
 /* Search bar */

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { Link, useLocation } from 'react-router-dom'
-import DropDownSignOut from './Profile'
+import Profile from './Profile'
 
 export default function Nav() {
   return (
@@ -24,7 +24,7 @@ export default function Nav() {
             />
           </div>
           <div className="nav-right">
-            <DropDownSignOut />
+            <Profile />
           </div>
         </div>
       </div>
