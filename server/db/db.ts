@@ -19,9 +19,10 @@ const db = connection
 
 export async function getAllCryptosInPortfolio() {
   return db('portfolios').select(
+    'id',
     'authO_id',
     'coin_name as name',
-    'coin_id as id',
+    'coin_id',
     'price',
     'percent_change_1h',
     'percent_change_24h',
@@ -69,6 +70,6 @@ export async function addCryptoToPortfolioWithPost(
 }
 
 export async function deleteCoinFromPortfolioById(id: number) {
-  const result = db('portfolios').select().where('id', id).del()
+  const result = db('portfolios').where('id', id).del()
   return result
 }

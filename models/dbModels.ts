@@ -4,7 +4,8 @@ export interface User {
 }
 
 export interface Portfolio {
-  id: string
+  id: number
+  coin_id: string
   authO_id: string | undefined
   name: string
   price: number

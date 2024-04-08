@@ -9,17 +9,6 @@ import checkJwt, { JwtRequest } from '../autho0.ts'
 const router = express.Router()
 const apiKey = process.env.CRYPTO_API_KEY
 
-// const authConfig = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: process.env.SECRET, // A long, secret string to encrypt session cookies
-//   baseURL: process.env.BASE_URL, // The base URL of your application
-//   clientID: process.env.AUTH0_CLIENT_ID, // Your Auth0 application's Client ID
-//   issuerBaseURL: process.env.AUTH0_DOMAIN, // Your Auth0 domain
-// }
-
-// router.use(auth(authConfig))
-
 // Get api Data
 router.get('/', async (req, res, next) => {
   try {
@@ -108,6 +97,7 @@ router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
   res.sendStatus(200)
 })
 
+// delete coin from portfolio
 router.delete('/:id', async (req, res, next) => {
   const id = Number(req.params.id)
   try {

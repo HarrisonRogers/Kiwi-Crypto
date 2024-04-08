@@ -27,7 +27,7 @@ export async function addCryptoToPortfolio({
   return response.body
 }
 
-export async function deleteCoinFromPortfolio(id: number) {
-  const response = await request.delete(`${rootURL}/${id}`)
+export async function deleteCoinFromPortfolio(id: Id) {
+  const response = await request.delete(`${rootURL}/${id.id}`)
   return response.body
 }

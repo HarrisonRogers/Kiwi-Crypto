@@ -5,7 +5,7 @@ import { Id } from '../../models/dbModels.ts'
 export default function DeleteButton({ id }: Id) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: () => deleteCoinFromPortfolio(id),
+    mutationFn: () => deleteCoinFromPortfolio({ id }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coin'] })
     },
