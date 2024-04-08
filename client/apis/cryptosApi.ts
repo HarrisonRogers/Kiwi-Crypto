@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Portfolio } from '../../models/dbModels'
+import { Id, Portfolio } from '../../models/dbModels'
 
 const rootURL = '/api/v1/portfolios'
 
@@ -24,5 +24,10 @@ export async function addCryptoToPortfolio({
     .post(`${rootURL}/portfolio`)
     .send(crypto)
     .set('Authorization', `Bearer ${token}`)
+  return response.body
+}
+
+export async function deleteCoinFromPortfolio(id: Id) {
+  const response = await request.delete(`${rootURL}/${id.id}`)
   return response.body
 }

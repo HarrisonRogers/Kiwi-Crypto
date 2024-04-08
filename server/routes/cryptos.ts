@@ -108,14 +108,28 @@ router.post('/callback', checkJwt, async (req: JwtRequest, res) => {
   res.sendStatus(200)
 })
 
-// User Profile
-router.get('/profile', checkJwt, (req, res) => {
-  // req.oidc.user contains the user profile information
-  if (req.oidc.user) {
-    res.json(req.oidc.user)
-  } else {
-    res.status(401).send('User not authenticated')
+router.delete('/:id', async (req, res, next) => {
+  const id = Number(req.params.id)
+  try {
+    await db.deleteCoinFromPortfolioById(id)
+    const getCryptos = await db.getAllCryptosInPortfolio()
+
+    res.json({ cryptos: getCryptos })
+  } catch (error) {
+    next(error)
   }
 })
+
+// Delete coin from portfolio
+
+// User Profile
+// router.get('/profile', checkJwt, (req, res) => {
+//   // req.oidc.user contains the user profile information
+//   if (req.oidc.user) {
+//     res.json(req.oidc.user)
+//   } else {
+//     res.status(401).send('User not authenticated')
+//   }
+// })
 
 export default router

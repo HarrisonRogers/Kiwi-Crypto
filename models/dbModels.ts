@@ -29,3 +29,16 @@ export interface Coin {
   percent_change_7d: number
   market_cap: number
 }
+
+export interface Id {
+  id: number
+}
+
+export interface DeleteParams {
+  name: string
+  price: number
+  percent_change_1h: number
+  percent_change_24h: number
+  percent_change_7d: number
+  market_cap: number
+}

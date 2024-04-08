@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addCryptoToPortfolio } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Portfolio } from '../../models/dbModels'
+// import { Portfolio } from '../../models/dbModels'
 
 export default function AddToPortfolioButton({ coin }) {
   const queryClient = useQueryClient()

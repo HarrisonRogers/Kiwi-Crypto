@@ -67,3 +67,8 @@ export async function addCryptoToPortfolioWithPost(
     market_cap,
   })
 }
+
+export async function deleteCoinFromPortfolioById(id: number) {
+  const result = db('portfolios').select().where('id', id).del()
+  return result
+}
