@@ -16,6 +16,7 @@ body {
   --third-color: #a0e3f3;
   --light-color: #fffff3;
   --dark-color: #00192b;
+  --light-dark-color: #b6b6b6;
   --text-color: #363636;
 }
 
@@ -91,7 +92,6 @@ p {
   }
 
   & i {
-    /* color: var(--secondary-color); */
     display: inline;
     font-size: 1.7rem;
   }
@@ -168,6 +168,36 @@ p {
   height: 10px;
   transform: rotate(45deg);
   background-color: var(--light-color);
+}
+
+/* --- Crypto Grid Layout */
+.coin {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 2rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-dark-color);
+
+  & button {
+    margin: 0;
+  }
+}
+
+.crypto-layout {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+
+/* favorite button */
+.star {
+  cursor: pointer;
+}
+
+.bg-orange {
+  color: orange;
 }
 
 /* Loading indicator from https://css-loaders.com/dots-bars/ */

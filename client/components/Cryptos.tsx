@@ -23,20 +23,30 @@ export default function Cryptos() {
   return (
     <>
       <div className="container">
-        {dataArr.map((coin) => (
-          <div key={coin.id}>
-            <h2>{coin.name}</h2>
-            <p>
-              Current Price:{' '}
-              {coin.quote[2802].price?.toFixed(3)
-                ? coin.quote[2802].price?.toFixed(3)
-                : 'No price available'}
-            </p>
-            <p>24h change: {coin.quote[2802].percent_change_24h.toFixed(3)}%</p>
-            <p>7d change: {coin.quote[2802].percent_change_7d.toFixed(3)}%</p>
-            <AddToPortfolioButton coin={coin} />
-          </div>
-        ))}
+        <div className="crypto-layout titles">
+          <p>Name:</p>
+          <p>Price:</p>
+          <p>24h Change:</p>
+          <p>7d Change:</p>
+        </div>
+        <div className="cryptos">
+          {dataArr.map((coin) => (
+            <div key={coin.id} className="coin">
+              <div className="crypto-layout">
+                <h2>{coin.name}</h2>
+                <p>
+                  {' '}
+                  {coin.quote[2802].price?.toFixed(3)
+                    ? '$' + coin.quote[2802].price?.toFixed(3)
+                    : 'No price available'}
+                </p>
+                <p>{coin.quote[2802].percent_change_24h.toFixed(2)}%</p>
+                <p>{coin.quote[2802].percent_change_7d.toFixed(2)}%</p>
+                <AddToPortfolioButton coin={coin} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   )

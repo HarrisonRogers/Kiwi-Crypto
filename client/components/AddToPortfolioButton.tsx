@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addCryptoToPortfolio } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
+import { useState } from 'react'
 // import { Portfolio } from '../../models/dbModels'
 
 export default function AddToPortfolioButton({ coin }) {
+  const [clicked, setClicked] = useState(false)
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
 
@@ -28,10 +32,21 @@ export default function AddToPortfolioButton({ coin }) {
     }
   }
 
+  const handleClick = () => {
+    setClicked((prev) => !prev)
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <button className="btn">Add to Portfolio</button>
+        <i
+          onClick={handleClick}
+          className={
+            clicked
+              ? 'fa-solid fa-star star bg-orange'
+              : 'fa-solid fa-star star'
+          }
+        ></i>
       </form>
     </>
   )
