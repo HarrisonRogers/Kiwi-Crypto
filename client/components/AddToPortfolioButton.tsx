@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addCryptoToPortfolio } from '../apis/cryptosApi'
+import {
+  addCryptoToPortfolio,
+  checkCryptoInPortfolio,
+} from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // import { Portfolio } from '../../models/dbModels'
 
 export default function AddToPortfolioButton({ coin }) {
@@ -39,14 +42,17 @@ export default function AddToPortfolioButton({ coin }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <i
-          onClick={handleClick}
-          className={
-            clicked
-              ? 'fa-solid fa-star star bg-orange'
-              : 'fa-solid fa-star star'
-          }
-        ></i>
+        <button className="port-btn">
+          {' '}
+          <i
+            onClick={handleClick}
+            className={
+              clicked
+                ? 'fa-solid fa-star star bg-orange'
+                : 'fa-solid fa-star star'
+            }
+          ></i>{' '}
+        </button>
       </form>
     </>
   )

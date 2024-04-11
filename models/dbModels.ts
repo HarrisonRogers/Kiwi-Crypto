@@ -19,6 +19,10 @@ export interface AuthOID {
   authO_id: string
 }
 
+export interface CoinId {
+  coin_id: number
+}
+
 export interface Coin {
   id: number
   authO_id: string

@@ -26,6 +26,20 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// Check if coin is in db
+router.get('/portfolio/check', checkJwt, async (req: JwtRequest, res, next) => {
+  try {
+    const { coin_id } = Number(req.query)
+    const authOId = req.auth?.sub as string
+
+    const isInPortfolio = await db.checkPortfolioForCrypto(authOId, coin_id)
+
+    res.json({ isInPortfolio })
+  } catch (error) {
+    next(error)
+  }
+})
+
 // Add coin to portfolio
 router.post('/portfolio', checkJwt, async (req, res) => {
   const { authO_id, id, name, quote } = req.body
@@ -110,8 +124,6 @@ router.delete('/:id', async (req, res, next) => {
     next(error)
   }
 })
-
-// Delete coin from portfolio
 
 // User Profile
 // router.get('/profile', checkJwt, (req, res) => {

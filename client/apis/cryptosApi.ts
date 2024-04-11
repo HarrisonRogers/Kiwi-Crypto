@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Id, Portfolio } from '../../models/dbModels'
+import { AuthOID, CoinId, Id, Portfolio } from '../../models/dbModels'
 
 const rootURL = '/api/v1/portfolios'
 
