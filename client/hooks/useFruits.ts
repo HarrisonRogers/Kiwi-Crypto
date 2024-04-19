@@ -1,9 +1,4 @@
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  MutationFunction,
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getCryptos } from '../apis/cryptosApi'
 
 // import { getFruits } from '../apis/cryptosApi'

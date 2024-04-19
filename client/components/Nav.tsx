@@ -1,8 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Profile from './Profile'
 
 export default function Nav() {

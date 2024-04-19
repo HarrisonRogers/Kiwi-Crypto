@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import {
-  addCryptoToPortfolio,
-  checkCryptoInPortfolio,
-} from '../apis/cryptosApi'
+import { addCryptoToPortfolio } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 // import { Portfolio } from '../../models/dbModels'
 
 export default function AddToPortfolioButton({ coin }) {
@@ -25,13 +22,15 @@ export default function AddToPortfolioButton({ coin }) {
   // Handle submit button which gets access token to put in users own portfolio
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-      const authO_id = user?.sub
-      const token = await getAccessTokenSilently()
-      const cryptoToAdd = { ...coin, authO_id }
-      mutation.mutate({ crypto: cryptoToAdd, token })
-    } catch (error) {
-      console.error('Error getting token: ', error)
+    if (clicked) {
+      try {
+        const authO_id = user?.sub
+        const token = await getAccessTokenSilently()
+        const cryptoToAdd = { ...coin, authO_id }
+        mutation.mutate({ crypto: cryptoToAdd, token })
+      } catch (error) {
+        console.error('Error getting token: ', error)
+      }
     }
   }
 

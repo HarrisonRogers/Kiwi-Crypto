@@ -125,14 +125,4 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-// User Profile
-// router.get('/profile', checkJwt, (req, res) => {
-//   // req.oidc.user contains the user profile information
-//   if (req.oidc.user) {
-//     res.json(req.oidc.user)
-//   } else {
-//     res.status(401).send('User not authenticated')
-//   }
-// })
-
 export default router

@@ -51,10 +51,6 @@ export default function Profile() {
             Sign Out
           </button>
         )}
-
-        {/* {openProfile && (
-          
-        )} */}
       </IfAuthenticated>
       <IfNotAuthenticated>
         <button className="btn" onClick={handleSignIn}>
