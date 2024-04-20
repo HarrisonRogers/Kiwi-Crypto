@@ -1,17 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import {
-  addCryptoToPortfolio,
-  checkForCryptoInPortfolio,
-} from '../apis/cryptosApi'
+import { addCryptoToPortfolio } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
-import { get } from 'superagent'
-
-import { auth } from 'express-openid-connect'
 
 interface AddToPortfolioButtonProps {
   coin: Crypto
