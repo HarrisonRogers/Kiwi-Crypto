@@ -40,6 +40,20 @@ router.get('/portfolio/check', checkJwt, async (req: JwtRequest, res, next) => {
   }
 })
 
+// Check Coin for button
+// router.get('/portfolio/:userId/:coinId', checkJwt, async (req, res) => {
+//   const { userId, coinId } = req.params
+//   try {
+//     const result = await knex('portfolios')
+//       .where({ authO_id: userId, coin_id: coinId })
+//       .first()
+//     res.json({ inPortfolio: !!result })
+//   } catch (error) {
+//     console.error('Error checking portfolio:', error)
+//     res.status(500).send('Internal server error')
+//   }
+// })
+
 // Add coin to portfolio
 router.post('/portfolio', checkJwt, async (req, res) => {
   const { authO_id, id, name, quote } = req.body

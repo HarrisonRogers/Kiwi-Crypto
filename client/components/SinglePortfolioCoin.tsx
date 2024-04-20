@@ -30,6 +30,8 @@ export default function SinglePortfolioCoin() {
   const uniqueCoins = new Map(portCryptos.map((coin) => [coin.id, coin]))
   const uniqueCoinsArr = Array.from(uniqueCoins.values())
 
+  console.log(uniqueCoinsArr)
+
   return (
     <>
       {uniqueCoinsArr.map((coin) => (
