@@ -1,3 +1,7 @@
 export default function LoadingIndicator() {
-  return <div className="loader"></div>
+  return (
+    <div className="container loader-container">
+      <div className="loader"></div>
+    </div>
+  )
 }

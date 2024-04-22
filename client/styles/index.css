@@ -208,8 +208,16 @@ p {
 
 /* Loading indicator from https://css-loaders.com/dots-bars/ */
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .loader {
-  width: 40px;
+  display: flex;
+  width: 80px;
   aspect-ratio: 1;
   --c: linear-gradient(#000 0 0);
   --r1: radial-gradient(farthest-side at bottom, #000 93%, #0000);
