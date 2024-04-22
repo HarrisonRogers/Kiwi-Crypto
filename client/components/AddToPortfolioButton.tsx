@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { addCryptoToPortfolio } from '../apis/cryptosApi'
+import {
+  addCryptoToPortfolio,
+  checkForCryptoInPortfolio,
+} from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
 import { Crypto } from '../../models/crypto'
@@ -14,35 +17,36 @@ interface AddToPortfolioButtonProps {
 export default function AddToPortfolioButton({
   coin,
 }: AddToPortfolioButtonProps) {
-  const [clicked, setClicked] = useState(false)
+  const [isInPortfolio, setIsInPortfolio] = useState(false)
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
 
   // Check if data is already in portfolio
-  // const { data: coinInPortfolio, isLoading } = useQuery({
-  //   queryKey: ['checkPortfolio', coin.id],
-  //   queryFn: async () => {
-  //     const token = await getAccessTokenSilently()
-  //     return checkForCryptoInPortfolio(
-  //       token,
-  //       String(user?.sub),
-  //       String(coin.id),
-  //     )
-  //   },
-  // })
+  const { data: coinInPortfolio } = useQuery({
+    queryKey: ['checkPortfolio', coin.id],
+    queryFn: async () => {
+      const token = await getAccessTokenSilently()
+      return checkForCryptoInPortfolio(
+        token,
+        String(user?.sub),
+        String(coin.id),
+      )
+    },
+  })
 
   // Post a crypto to portfolio
   const postMutation = useMutation({
     mutationFn: addCryptoToPortfolio,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coins'] })
+      setIsInPortfolio(true)
     },
   })
 
   // Handle submit button which gets access token to put in users own portfolio
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (clicked) {
+    if (!isInPortfolio) {
       try {
         const authO_id = user?.sub
         const token = await getAccessTokenSilently()
@@ -63,19 +67,14 @@ export default function AddToPortfolioButton({
     }
   }
 
-  const handleClick = () => {
-    setClicked((prev) => !prev)
-  }
-
   return (
     <>
       <form onSubmit={handleSubmit}>
         <button className="port-btn">
           {' '}
           <i
-            onClick={handleClick}
             className={
-              clicked
+              isInPortfolio
                 ? 'fa-solid fa-star star bg-orange'
                 : 'fa-solid fa-star star'
             }

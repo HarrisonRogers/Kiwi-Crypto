@@ -28,16 +28,16 @@ export async function addCryptoToPortfolio({
   return response.body
 }
 
-// export async function checkForCryptoInPortfolio(
-//   token: string,
-//   authO_id: string,
-//   coin_id: string,
-// ) {
-//   const response = await request
-//     .get(`${rootURL}/portfolio/${authO_id}/${coin_id}`)
-//     .set('Authorization', `Bearer ${token}`)
-//   return response.body
-// }
+export async function checkForCryptoInPortfolio(
+  token: string,
+  authO_id: string,
+  coin_id: string,
+) {
+  const response = await request
+    .get(`${rootURL}/portfolio/${authO_id}/${coin_id}`)
+    .set('Authorization', `Bearer ${token}`)
+  return response.body
+}
 
 export async function deleteCoinFromPortfolio(id: Id) {
   const response = await request.delete(`${rootURL}/${id.id}`)
