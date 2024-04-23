@@ -86,7 +86,7 @@ router.post('/portfolio', checkJwt, async (req, res) => {
 })
 
 // Gets portfolio coins
-router.get('/portfolio', async (req, res, next) => {
+router.get('/portfolio', async (req, res) => {
   try {
     const portfolioCoins = await db.getAllCryptosInPortfolio()
 

@@ -6,7 +6,6 @@ import {
   checkForCryptoInPortfolio,
 } from '../apis/cryptosApi'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useState } from 'react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
 import CircleLoadingIndicator from './CircleLoadingINdicator'
@@ -18,7 +17,6 @@ interface AddToPortfolioButtonProps {
 export default function AddToPortfolioButton({
   coin,
 }: AddToPortfolioButtonProps) {
-  // const [isInPortfolio, setIsInPortfolio] = useState(false)
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
 
