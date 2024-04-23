@@ -22,7 +22,6 @@ export default function Cryptos() {
 
   return (
     <>
-      {/* <LoadingIndicator /> */}
       <div className="container">
         <div className="crypto-layout titles">
           <p>Name:</p>
