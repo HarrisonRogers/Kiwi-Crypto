@@ -24,10 +24,10 @@ export default function AddToPortfolioButton({
 
   // Check if data is already in portfolio
   const { data: isInPortfolio, isLoading } = useQuery({
-    queryKey: ['checkPortfolio', coin.id],
+    queryKey: ['checkPortfolio', user?.sub, coin.id],
     queryFn: async () => {
       const token = await getAccessTokenSilently()
-      return checkForCryptoInPortfolio(
+      return await checkForCryptoInPortfolio(
         token,
         String(user?.sub),
         String(coin.id),
@@ -41,7 +41,7 @@ export default function AddToPortfolioButton({
     mutationFn: addCryptoToPortfolio,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coins'] })
-      queryClient.setQueryData(['checkPortfolio', coin.id], true)
+      queryClient.setQueryData(['checkPortfolio', user?.sub, coin.id], true)
     },
   })
 
@@ -68,12 +68,6 @@ export default function AddToPortfolioButton({
       }
     }
   }
-
-  // Loading state
-  // if (isLoading) {
-  //   return <CircleLoadingIndicator />
-  // }
-
   return (
     <>
       <form onSubmit={handleSubmit}>

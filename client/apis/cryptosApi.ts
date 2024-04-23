@@ -1,6 +1,5 @@
 import request from 'superagent'
-import { AuthOID, CoinId, Id, Portfolio } from '../../models/dbModels'
-import { response } from 'express'
+import { Id, Portfolio } from '../../models/dbModels'
 
 const rootURL = '/api/v1/portfolios'
 
@@ -28,15 +27,36 @@ export async function addCryptoToPortfolio({
   return response.body
 }
 
+// export async function checkForCryptoInPortfolio(
+//   token: string,
+//   authO_id: string,
+//   coin_id: string,
+// ) {
+//   const response = await request
+//     .get(`${rootURL}/portfolio/${authO_id}/${coin_id}`)
+//     .set('Authorization', `Bearer ${token}`)
+//   return response.body
+// }
+
 export async function checkForCryptoInPortfolio(
   token: string,
-  authO_id: string,
-  coin_id: string,
+  userId: string,
+  coinId: string,
 ) {
-  const response = await request
-    .get(`${rootURL}/portfolio/${authO_id}/${coin_id}`)
-    .set('Authorization', `Bearer ${token}`)
-  return response.body
+  const headers = new Headers({
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  })
+
+  const response = await fetch(`${rootURL}/portfolio/check?coin_id=${coinId}`, {
+    headers,
+  })
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+
+  const data = await response.json()
+  return data.isInPortfolio
 }
 
 export async function deleteCoinFromPortfolio(id: Id) {

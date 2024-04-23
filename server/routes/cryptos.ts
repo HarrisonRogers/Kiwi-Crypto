@@ -29,30 +29,19 @@ router.get('/', async (req, res, next) => {
 // Check if coin is in db
 router.get('/portfolio/check', checkJwt, async (req: JwtRequest, res, next) => {
   try {
-    const { coin_id } = Number(req.query)
+    const { coin_id } = req.query
     const authOId = req.auth?.sub as string
 
-    const isInPortfolio = await db.checkPortfolioForCrypto(authOId, coin_id)
+    const isInPortfolio = await db.checkPortfolioForCrypto(
+      authOId,
+      String(coin_id),
+    )
 
     res.json({ isInPortfolio })
   } catch (error) {
     next(error)
   }
 })
-
-// Check Coin for button
-// router.get('/portfolio/:userId/:coinId', checkJwt, async (req, res) => {
-//   const { userId, coinId } = req.params
-//   try {
-//     const result = await knex('portfolios')
-//       .where({ authO_id: userId, coin_id: coinId })
-//       .first()
-//     res.json({ inPortfolio: !!result })
-//   } catch (error) {
-//     console.error('Error checking portfolio:', error)
-//     res.status(500).send('Internal server error')
-//   }
-// })
 
 // Add coin to portfolio
 router.post('/portfolio', checkJwt, async (req, res) => {
