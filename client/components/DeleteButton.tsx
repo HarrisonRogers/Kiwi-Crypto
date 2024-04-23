@@ -8,6 +8,7 @@ export default function DeleteButton({ id }: Id) {
     mutationFn: () => deleteCoinFromPortfolio({ id }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coin'] })
+      queryClient.setQueryData(['checkPortfolio', id], false)
     },
   })
 

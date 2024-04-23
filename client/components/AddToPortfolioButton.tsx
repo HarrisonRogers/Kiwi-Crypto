@@ -9,6 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
+import CircleLoadingIndicator from './CircleLoadingINdicator'
 
 interface AddToPortfolioButtonProps {
   coin: Crypto
@@ -17,12 +18,12 @@ interface AddToPortfolioButtonProps {
 export default function AddToPortfolioButton({
   coin,
 }: AddToPortfolioButtonProps) {
-  const [isInPortfolio, setIsInPortfolio] = useState(false)
+  // const [isInPortfolio, setIsInPortfolio] = useState(false)
   const queryClient = useQueryClient()
   const { getAccessTokenSilently, user } = useAuth0()
 
   // Check if data is already in portfolio
-  const { data: coinInPortfolio } = useQuery({
+  const { data: isInPortfolio, isLoading } = useQuery({
     queryKey: ['checkPortfolio', coin.id],
     queryFn: async () => {
       const token = await getAccessTokenSilently()
@@ -32,6 +33,7 @@ export default function AddToPortfolioButton({
         String(coin.id),
       )
     },
+    enabled: !!user?.sub,
   })
 
   // Post a crypto to portfolio
@@ -39,7 +41,7 @@ export default function AddToPortfolioButton({
     mutationFn: addCryptoToPortfolio,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['portfolio coins'] })
-      setIsInPortfolio(true)
+      queryClient.setQueryData(['checkPortfolio', coin.id], true)
     },
   })
 
@@ -67,19 +69,28 @@ export default function AddToPortfolioButton({
     }
   }
 
+  // Loading state
+  // if (isLoading) {
+  //   return <CircleLoadingIndicator />
+  // }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <button className="port-btn">
-          {' '}
-          <i
-            className={
-              isInPortfolio
-                ? 'fa-solid fa-star star bg-orange'
-                : 'fa-solid fa-star star'
-            }
-          ></i>{' '}
-        </button>
+        {isLoading ? (
+          <CircleLoadingIndicator />
+        ) : (
+          <button className="port-btn">
+            {' '}
+            <i
+              className={
+                isInPortfolio
+                  ? 'fa-solid fa-star star bg-orange'
+                  : 'fa-solid fa-star star'
+              }
+            ></i>{' '}
+          </button>
+        )}
       </form>
     </>
   )
