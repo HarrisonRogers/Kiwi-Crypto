@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Link } from 'react-router-dom'
 import Profile from './Profile'
+import SearchBar from './SearchBar'
 
 export default function Nav() {
   return (
@@ -15,11 +16,7 @@ export default function Nav() {
             </Link>
           </div>
           <div className="nav-middle">
-            <input
-              className="search-bar"
-              type="text"
-              placeholder="Search for Crypto"
-            />
+            <SearchBar />
           </div>
           <div className="nav-right">
             <Profile />

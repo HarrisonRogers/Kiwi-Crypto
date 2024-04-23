@@ -8,7 +8,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
-import CircleLoadingIndicator from './CircleLoadingINdicator'
+import CircleLoadingIndicator from './CircleLoadingIndicator'
 
 interface AddToPortfolioButtonProps {
   coin: Crypto
