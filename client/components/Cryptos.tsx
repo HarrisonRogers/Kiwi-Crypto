@@ -40,8 +40,8 @@ export default function Cryptos() {
                 <h2>{coin.name}</h2>
                 <p>
                   {' '}
-                  {coin.quote[2802].price?.toFixed(3)
-                    ? '$' + coin.quote[2802].price?.toFixed(3)
+                  {coin.quote[2802].price?.toFixed(2)
+                    ? '$' + coin.quote[2802].price?.toFixed(2)
                     : 'No price available'}
                 </p>
                 <p>{coin.quote[2802].percent_change_24h.toFixed(2)}%</p>

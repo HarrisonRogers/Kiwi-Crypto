@@ -37,18 +37,31 @@ export default function SinglePortfolioCoin() {
   })
 
   return (
-    <>
+    <div className="portfolio-coin">
       {filteredData.map((coin) => (
-        <li key={coin.id}>
-          <p>{coin.name}</p>
-          <p>{coin.price.toFixed(3)}</p>
-          <p>{coin.percent_change_1h.toFixed(2)}%</p>
-          <p>{coin.percent_change_24h.toFixed(2)}%</p>
-          <p>{coin.percent_change_7d.toFixed(2)}%</p>
-          <p>{coin.market_cap.toFixed(0)}</p>
+        <li className="list-coin" key={coin.id}>
+          <div className="coin-name">
+            <h1>{coin.name}</h1>
+          </div>
+          <div className="portfolio-layout">
+            <div className="crypto-layout titles">
+              <p>Price:</p>
+              <p>1h Change:</p>
+              <p>24h Change:</p>
+              <p>7d Change:</p>
+              <p>Market Cap: </p>
+            </div>
+            <div className="crypto-layout coin-details ">
+              <h3>${coin.price.toFixed(3)}</h3>
+              <h3>{coin.percent_change_1h.toFixed(2)}%</h3>
+              <h3>{coin.percent_change_24h.toFixed(2)}%</h3>
+              <h3>{coin.percent_change_7d.toFixed(2)}%</h3>
+              <h3>${coin.market_cap.toFixed(0)}</h3>
+            </div>
+          </div>
           <DeleteButton id={Number(coin.id)} />
         </li>
       ))}
-    </>
+    </div>
   )
 }
