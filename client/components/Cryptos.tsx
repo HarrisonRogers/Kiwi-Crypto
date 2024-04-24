@@ -3,12 +3,14 @@ import { getCryptos } from '../apis/cryptosApi'
 import type { Crypto } from '../../models/crypto'
 import LoadingIndicator from './LoadingIndicator'
 import AddToPortfolioButton from './AddToPortfolioButton'
+import { useSearch } from '../contexts/searchContext'
 
 export default function Cryptos() {
   const { data, isPending, isError } = useQuery({
     queryKey: ['cryptos'],
     queryFn: () => getCryptos(),
   })
+  const { searchTerm } = useSearch()
 
   if (isPending) {
     return <LoadingIndicator />
@@ -19,7 +21,9 @@ export default function Cryptos() {
   }
   const keysArray = Object.keys(data)
   const dataArr = keysArray.map((key) => data[key] as Crypto)
-
+  const filteredData = dataArr.filter((coin) => {
+    return coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+  })
   return (
     <>
       <div className="container">
@@ -30,7 +34,7 @@ export default function Cryptos() {
           <p>7d Change:</p>
         </div>
         <div className="cryptos">
-          {dataArr.map((coin) => (
+          {filteredData.map((coin) => (
             <div key={coin.id} className="coin">
               <div className="crypto-layout">
                 <h2>{coin.name}</h2>
