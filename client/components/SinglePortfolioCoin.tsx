@@ -4,6 +4,7 @@ import LoadingIndicator from './LoadingIndicator'
 import { Portfolio as CryptoData } from '../../models/dbModels'
 import { useAuth0 } from '@auth0/auth0-react'
 import DeleteButton from './DeleteButton'
+import { useSearch } from '../contexts/searchContext'
 
 export default function SinglePortfolioCoin() {
   const { user } = useAuth0()
@@ -15,6 +16,8 @@ export default function SinglePortfolioCoin() {
       return allCoins.filter((coin: CryptoData) => coin.authO_id == user?.sub)
     },
   })
+
+  const { searchTerm } = useSearch()
 
   if (isPending) {
     return <LoadingIndicator />
@@ -29,10 +32,13 @@ export default function SinglePortfolioCoin() {
   // Remove duplicates
   const uniqueCoins = new Map(portCryptos.map((coin) => [coin.id, coin]))
   const uniqueCoinsArr = Array.from(uniqueCoins.values())
+  const filteredData = uniqueCoinsArr.filter((coin) => {
+    return coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
   return (
     <>
-      {uniqueCoinsArr.map((coin) => (
+      {filteredData.map((coin) => (
         <li key={coin.id}>
           <p>{coin.name}</p>
           <p>{coin.price.toFixed(3)}</p>
