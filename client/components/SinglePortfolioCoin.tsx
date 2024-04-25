@@ -38,10 +38,12 @@ export default function SinglePortfolioCoin() {
 
   if (filteredData.length === 0) {
     return (
-      <h1 className="center">
-        Add Coins To Portfolio with the{' '}
-        <i className="fa-solid fa-star star"></i>
-      </h1>
+      <div className="no-coin">
+        <h1 className="center">
+          Add Coins To Portfolio with the{' '}
+          <i className="fa-solid fa-star star"></i>
+        </h1>
+      </div>
     )
   } else {
     return (

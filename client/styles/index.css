@@ -248,6 +248,10 @@ input:focus {
     border-bottom: 1px solid var(--third-color);
     width: 90%;
     margin-bottom: 1rem;
+
+    & h1 {
+      font-weight: 400;
+    }
   }
 
   .portfolio-layout {
@@ -268,6 +272,14 @@ input:focus {
 
   .btn {
     padding: 5px 8px;
+  }
+}
+
+.no-coin {
+  height: 70vh;
+  .center {
+    height: 30%;
+    font-weight: 400;
   }
 }
 
