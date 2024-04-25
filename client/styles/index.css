@@ -197,10 +197,7 @@ input:focus {
 
 /* --- Crypto Grid Layout */
 .coin {
-  /* display: flex;
-  flex-direction: column; */
   height: 100%;
-  /* justify-content: center; */
   width: 100%;
   margin: 2rem 0;
   padding-bottom: 0.5rem;
@@ -258,7 +255,7 @@ input:focus {
   }
 
   .titles {
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-weight: 400;
   }
 
