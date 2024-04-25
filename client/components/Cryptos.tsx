@@ -41,7 +41,7 @@ export default function Cryptos() {
                 <p>
                   {' '}
                   {coin.quote[2802].price?.toFixed(2)
-                    ? '$' + coin.quote[2802].price?.toFixed(2)
+                    ? `$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.quote[2802].price)}`
                     : 'No price available'}
                 </p>
                 <p>{coin.quote[2802].percent_change_24h.toFixed(2)}%</p>
