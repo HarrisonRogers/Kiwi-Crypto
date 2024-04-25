@@ -36,32 +36,41 @@ export default function SinglePortfolioCoin() {
     return coin.name.toLowerCase().includes(searchTerm.toLowerCase())
   })
 
-  return (
-    <div className="portfolio-coin">
-      {filteredData.map((coin) => (
-        <li className="list-coin" key={coin.id}>
-          <div className="coin-name">
-            <h1>{coin.name}</h1>
-          </div>
-          <div className="portfolio-layout">
-            <div className="crypto-layout titles">
-              <p>Price:</p>
-              <p>1h Change:</p>
-              <p>24h Change:</p>
-              <p>7d Change:</p>
-              <p>Market Cap: </p>
+  if (filteredData.length === 0) {
+    return (
+      <h1 className="center">
+        Add Coins To Portfolio with the{' '}
+        <i className="fa-solid fa-star star"></i>
+      </h1>
+    )
+  } else {
+    return (
+      <div className="portfolio-coin">
+        {filteredData.map((coin) => (
+          <li className="list-coin" key={coin.id}>
+            <div className="coin-name">
+              <h1>{coin.name}</h1>
             </div>
-            <div className="crypto-layout coin-details ">
-              <h3>${coin.price.toFixed(3)}</h3>
-              <h3>{coin.percent_change_1h.toFixed(2)}%</h3>
-              <h3>{coin.percent_change_24h.toFixed(2)}%</h3>
-              <h3>{coin.percent_change_7d.toFixed(2)}%</h3>
-              <h3>${coin.market_cap.toFixed(0)}</h3>
+            <div className="portfolio-layout">
+              <div className="crypto-layout titles">
+                <p>Price:</p>
+                <p>1h Change:</p>
+                <p>24h Change:</p>
+                <p>7d Change:</p>
+                <p>Market Cap: </p>
+              </div>
+              <div className="crypto-layout coin-details ">
+                <h3>${coin.price.toFixed(3)}</h3>
+                <h3>{coin.percent_change_1h.toFixed(2)}%</h3>
+                <h3>{coin.percent_change_24h.toFixed(2)}%</h3>
+                <h3>{coin.percent_change_7d.toFixed(2)}%</h3>
+                <h3>${coin.market_cap.toFixed(0)}</h3>
+              </div>
             </div>
-          </div>
-          <DeleteButton id={Number(coin.id)} />
-        </li>
-      ))}
-    </div>
-  )
+            <DeleteButton id={Number(coin.id)} />
+          </li>
+        ))}
+      </div>
+    )
+  }
 }
