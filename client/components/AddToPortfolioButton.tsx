@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
@@ -5,10 +6,12 @@ import {
   addCryptoToPortfolio,
   checkForCryptoInPortfolio,
 } from '../apis/cryptosApi'
+import { toast } from 'react-toastify'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
 import CircleLoadingIndicator from './CircleLoadingIndicator'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 interface AddToPortfolioButtonProps {
   coin: Crypto
@@ -66,13 +69,44 @@ export default function AddToPortfolioButton({
       }
     }
   }
+
+  const notify = () =>
+    toast.error('Must be signed in to add!', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    })
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <IfAuthenticated>
+        <form onSubmit={handleSubmit}>
+          {isLoading ? (
+            <CircleLoadingIndicator />
+          ) : (
+            <button className="port-btn">
+              {' '}
+              <i
+                className={
+                  isInPortfolio
+                    ? 'fa-solid fa-star star bg-orange'
+                    : 'fa-solid fa-star star'
+                }
+              ></i>{' '}
+            </button>
+          )}
+        </form>
+      </IfAuthenticated>
+      <IfNotAuthenticated>
         {isLoading ? (
           <CircleLoadingIndicator />
         ) : (
-          <button className="port-btn">
+          <button className="port-btn" onClick={notify}>
             {' '}
             <i
               className={
@@ -83,7 +117,7 @@ export default function AddToPortfolioButton({
             ></i>{' '}
           </button>
         )}
-      </form>
+      </IfNotAuthenticated>
     </>
   )
 }
