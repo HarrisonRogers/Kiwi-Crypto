@@ -70,6 +70,7 @@ export default function AddToPortfolioButton({
     }
   }
 
+  // Toast pop up
   const notify = () =>
     toast.error('Must be signed in to add!', {
       position: 'bottom-right',
