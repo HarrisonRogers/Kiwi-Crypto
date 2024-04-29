@@ -24,34 +24,63 @@ export default function Cryptos() {
   const filteredData = dataArr.filter((coin) => {
     return coin.name.toLowerCase().includes(searchTerm.toLowerCase())
   })
-  return (
-    <>
+
+  if (filteredData.length <= 0) {
+    return (
       <div className="container">
-        <div className="crypto-layout titles">
-          <p>Name:</p>
-          <p>Price:</p>
-          <p>24h Change:</p>
-          <p>7d Change:</p>
-        </div>
-        <div className="cryptos">
-          {filteredData.map((coin) => (
-            <div key={coin.id} className="coin">
-              <div className="crypto-layout">
-                <h2>{coin.name}</h2>
-                <p>
-                  {' '}
-                  {coin.quote[2802].price?.toFixed(2)
-                    ? `$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.quote[2802].price)}`
-                    : 'No price available'}
-                </p>
-                <p>{coin.quote[2802].percent_change_24h.toFixed(2)}%</p>
-                <p>{coin.quote[2802].percent_change_7d.toFixed(2)}%</p>
-                <AddToPortfolioButton coin={coin} />
-              </div>
-            </div>
-          ))}
-        </div>
+        <h1 className="center">Can not find coin</h1>
       </div>
-    </>
-  )
+    )
+  } else {
+    return (
+      <>
+        <div className="container">
+          <div className="crypto-layout titles">
+            <p>Name:</p>
+            <p>Price:</p>
+            <p>24h Change:</p>
+            <p>7d Change:</p>
+          </div>
+          <div className="cryptos">
+            {filteredData.map((coin) => (
+              <div key={coin.id} className="coin">
+                <div className="crypto-layout">
+                  <h2>{coin.name}</h2>
+                  <p>
+                    {' '}
+                    {coin.quote[2802].price?.toFixed(2)
+                      ? `$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.quote[2802].price)}`
+                      : 'No price available'}
+                  </p>
+                  <p
+                    className={
+                      coin.quote[2802].percent_change_24h
+                        .toFixed(2)
+                        .includes('-')
+                        ? 'red'
+                        : 'green'
+                    }
+                  >
+                    {coin.quote[2802].percent_change_24h.toFixed(2)}%
+                  </p>
+                  <p
+                    className={
+                      coin.quote[2802].percent_change_7d
+                        .toFixed(2)
+                        .includes('-')
+                        ? 'red'
+                        : 'green'
+                    }
+                  >
+                    {coin.quote[2802].percent_change_7d.toFixed(2)}%
+                  </p>
+                  <AddToPortfolioButton coin={coin} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    )
+  }
 }

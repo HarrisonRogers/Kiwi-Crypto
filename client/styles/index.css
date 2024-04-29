@@ -61,6 +61,14 @@ p {
   align-items: center;
 }
 
+.green {
+  color: rgb(24, 194, 24);
+}
+
+.red {
+  color: rgb(255, 28, 28);
+}
+
 /* Navbar */
 #navbar {
   background-color: var(--primary-color);

@@ -63,9 +63,33 @@ export default function SinglePortfolioCoin() {
               </div>
               <div className="crypto-layout coin-details ">
                 <h3>{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.price)}`}</h3>
-                <h3>{coin.percent_change_1h.toFixed(2)}%</h3>
-                <h3>{coin.percent_change_24h.toFixed(2)}%</h3>
-                <h3>{coin.percent_change_7d.toFixed(2)}%</h3>
+                <h3
+                  className={
+                    coin.percent_change_1h.toFixed(2).includes('-')
+                      ? 'red'
+                      : 'green'
+                  }
+                >
+                  {coin.percent_change_1h.toFixed(2)}%
+                </h3>
+                <h3
+                  className={
+                    coin.percent_change_24h.toFixed(2).includes('-')
+                      ? 'red'
+                      : 'green'
+                  }
+                >
+                  {coin.percent_change_24h.toFixed(2)}%
+                </h3>
+                <h3
+                  className={
+                    coin.percent_change_7d.toFixed(2).includes('-')
+                      ? 'red'
+                      : 'green'
+                  }
+                >
+                  {coin.percent_change_7d.toFixed(2)}%
+                </h3>
                 <h3>{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.market_cap)}`}</h3>
               </div>
             </div>
