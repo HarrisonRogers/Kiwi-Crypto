@@ -291,6 +291,13 @@ input:focus {
   }
 }
 
+/* Media Queries */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
 /* Loading indicator from https://css-loaders.com/dots-bars/ */
 
 .loader-container {

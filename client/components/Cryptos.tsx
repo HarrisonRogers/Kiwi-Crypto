@@ -38,8 +38,8 @@ export default function Cryptos() {
           <div className="crypto-layout titles">
             <p>Name:</p>
             <p>Price:</p>
-            <p>24h Change:</p>
-            <p>7d Change:</p>
+            <p className="hide-on-mobile">24h Change:</p>
+            <p className="hide-on-mobile">7d Change:</p>
           </div>
           <div className="cryptos">
             {filteredData.map((coin) => (
@@ -57,8 +57,8 @@ export default function Cryptos() {
                       coin.quote[2802].percent_change_24h
                         .toFixed(2)
                         .includes('-')
-                        ? 'red'
-                        : 'green'
+                        ? 'red hide-on-mobile'
+                        : 'green hide-on-mobile'
                     }
                   >
                     {coin.quote[2802].percent_change_24h.toFixed(2)}%
@@ -68,8 +68,8 @@ export default function Cryptos() {
                       coin.quote[2802].percent_change_7d
                         .toFixed(2)
                         .includes('-')
-                        ? 'red'
-                        : 'green'
+                        ? 'red hide-on-mobile'
+                        : 'green hide-on-mobile'
                     }
                   >
                     {coin.quote[2802].percent_change_7d.toFixed(2)}%
