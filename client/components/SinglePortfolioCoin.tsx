@@ -54,43 +54,52 @@ export default function SinglePortfolioCoin() {
               <h1>{coin.name}</h1>
             </div>
             <div className="portfolio-layout">
-              <div className="crypto-layout titles">
-                <p>Price:</p>
-                <p>1h Change:</p>
-                <p>24h Change:</p>
-                <p>7d Change:</p>
-                <p>Market Cap: </p>
-              </div>
-              <div className="crypto-layout coin-details ">
-                <h3>{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.price)}`}</h3>
-                <h3
-                  className={
-                    coin.percent_change_1h.toFixed(2).includes('-')
-                      ? 'red'
-                      : 'green'
-                  }
-                >
-                  {coin.percent_change_1h.toFixed(2)}%
-                </h3>
-                <h3
-                  className={
-                    coin.percent_change_24h.toFixed(2).includes('-')
-                      ? 'red'
-                      : 'green'
-                  }
-                >
-                  {coin.percent_change_24h.toFixed(2)}%
-                </h3>
-                <h3
-                  className={
-                    coin.percent_change_7d.toFixed(2).includes('-')
-                      ? 'red'
-                      : 'green'
-                  }
-                >
-                  {coin.percent_change_7d.toFixed(2)}%
-                </h3>
-                <h3>{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.market_cap)}`}</h3>
+              <div className="crypto-layout">
+                <div className="stat">
+                  <p className="titles">Price:</p>
+                  <h3 className="coin-details">{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.price)}`}</h3>
+                </div>
+                <div className="stat">
+                  <p className="titles">1h Change:</p>
+                  <h3
+                    className={
+                      coin.percent_change_1h.toFixed(2).includes('-')
+                        ? 'coin-details red'
+                        : 'coin-details green'
+                    }
+                  >
+                    {coin.percent_change_1h.toFixed(2)}%
+                  </h3>
+                </div>
+                <div className="stat">
+                  <p className="titles">24h Change:</p>
+                  <h3
+                    className={
+                      coin.percent_change_24h.toFixed(2).includes('-')
+                        ? 'coin-details red'
+                        : 'coin-details green'
+                    }
+                  >
+                    {coin.percent_change_24h.toFixed(2)}%
+                  </h3>
+                </div>
+                <div className="stat">
+                  <p className="titles">7d Change:</p>
+                  <h3
+                    className={
+                      coin.percent_change_7d.toFixed(2).includes('-')
+                        ? 'coin-details red'
+                        : 'coin-details green'
+                    }
+                  >
+                    {coin.percent_change_7d.toFixed(2)}%
+                  </h3>
+                </div>
+
+                <div className="stat">
+                  <p className="titles">Market Cap: </p>
+                  <h3 className="coin-details">{`$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(coin.market_cap)}`}</h3>
+                </div>
               </div>
             </div>
             <DeleteButton id={Number(coin.id)} />

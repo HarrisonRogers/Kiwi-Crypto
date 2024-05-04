@@ -2,7 +2,7 @@ import SinglePortfolioCoin from './SinglePortfolioCoin'
 
 export default function Portfolio() {
   return (
-    <div>
+    <div className="portfolio">
       <ul className="container">
         <SinglePortfolioCoin />
       </ul>

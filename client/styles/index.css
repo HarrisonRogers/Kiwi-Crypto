@@ -272,10 +272,8 @@ input:focus {
   }
 
   .coin-details {
-    & h3 {
-      font-weight: 400;
-      font-size: 24px;
-    }
+    font-weight: 400;
+    font-size: 24px;
   }
 
   .btn {
@@ -293,8 +291,23 @@ input:focus {
 
 /* Media Queries */
 @media (max-width: 768px) {
+  .container {
+    width: 700px;
+  }
+
   .hide-on-mobile {
     display: none;
+  }
+
+  /* Crypto home page */
+  .crypto-layout {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Portfolio coin */
+  .portfolio {
+    .crypto-layout {
+    }
   }
 }
 
