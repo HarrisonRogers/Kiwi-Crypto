@@ -8,3 +8,6 @@
  - Make a .env file and copy the API key in the .env.sample file into the .env file 
  - Run the site locally with npm run dev
  - You will have to sign up to use all features
+
+## head into the server-side branch to use this application
+
