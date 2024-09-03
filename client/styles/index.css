@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Utils */
+html,
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --primary-color: #05abd9;
+  --secondary-color: #57f3f3;
+  --third-color: #a0e3f3;
+  --light-color: #fffff3;
+  --dark-color: #00192b;
+  --light-dark-color: #b6b6b6;
+  --text-color: #363636;
+}
+
+p {
+  color: #000;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: auto;
+  width: auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  color: rgb(24, 194, 24);
+}
+
+.red {
+  color: rgb(255, 28, 28);
+}
+
+/* Navbar */
+#navbar {
+  background-color: var(--primary-color);
+  width: 100%;
+}
+
+.nav {
+  margin: 0 2rem 4rem 2rem;
+  height: 146px;
+}
+
+.nav-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  top: 0;
+  text-align: center;
+  color: var(--light-color);
+}
+
+/* Logo */
+.logo {
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  & a {
+    text-decoration: none;
+  }
+
+  & h2 {
+    text-decoration: none;
+    color: var(--third-color);
+    font-size: 1.2rem;
+  }
+
+  & i {
+    display: inline;
+    font-size: 1.7rem;
+  }
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Search bar */
+
+.nav-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.search-bar {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
+  height: 2.5rem;
+  padding: 0 15px;
+  box-shadow: 0 0 8px var(--third-color);
+  display: flex;
+  align-items: center;
+
+  & i {
+    color: var(--primary-color);
+  }
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  height: 80%;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+  margin-left: 8px;
+  padding-left: 8px;
+  border-left: 1px solid rgb(186, 186, 186);
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Profile */
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin: 10px 0px;
+    width: 75px;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+  }
+
+  button {
+    font-size: 0.6rem;
+  }
+}
+
+.logout-btn {
+  background-color: var(--light-color);
+
+  & button {
+    border: none;
+    font-family: inherit;
+    background: none;
+    font-size: 0.7rem;
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+}
+
+.logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 6.3rem;
+  right: 4rem;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background-color: var(--light-color);
+}
+
+/* --- Crypto Grid Layout */
+.coin {
+  height: 100%;
+  width: 100%;
+  margin: 2rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-dark-color);
+
+  & button {
+    margin: 0;
+  }
+}
+
+.crypto-layout {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+
+/* favorite button */
+.port-btn {
+  background: none;
+  border: none;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.bg-orange {
+  color: orange;
+}
+
+/* ---Portfolio--- */
+.portfolio-coin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  & li {
+    list-style: none;
+  }
+
+  .list-coin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid var(--third-color);
+    width: 90%;
+    margin-bottom: 1rem;
+
+    & h1 {
+      font-weight: 400;
+    }
+  }
+
+  .portfolio-layout {
+    margin: 1rem 0;
+  }
+
+  .titles {
+    padding-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .coin-details {
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .btn {
+    padding: 5px 8px;
+  }
+}
+
+.no-coin {
+  height: 70vh;
+  .center {
+    height: 30%;
+    font-weight: 400;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1100px) {
+  .container {
+    width: auto;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  /* Crypto home page */
+  .crypto-layout {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Portfolio coin */
+  .portfolio {
+    .crypto-layout {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .crypto-layout div:first-child {
+      grid-column: 1 / span 3;
+    }
+
+    .crypto-layout div:nth-child(3) {
+      padding: 0 10px 0 10px;
+      border-left: 1px solid var(--light-dark-color);
+      border-right: 1px solid var(--light-dark-color);
+    }
+
+    .crypto-layout div:last-child {
+      margin-bottom: 10px;
+      grid-column: 1 / span 3;
+    }
+
+    .stat {
+      margin-bottom: 20px;
+      & h3 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    width: 1500px;
+  }
+}
+
+/* Loading indicator from https://css-loaders.com/dots-bars/ */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loader {
+  display: flex;
+  width: 80px;
+  aspect-ratio: 1;
+  --c: linear-gradient(#000 0 0);
+  --r1: radial-gradient(farthest-side at bottom, #000 93%, #0000);
+  --r2: radial-gradient(farthest-side at top, #000 93%, #0000);
+  background: var(--c), var(--r1), var(--r2), var(--c), var(--r1), var(--r2),
+    var(--c), var(--r1), var(--r2);
+  background-repeat: no-repeat;
+  animation: l2 1s infinite alternate;
+}
+@keyframes l2 {
+  0%,
+  25% {
+    background-size:
+      8px 0,
+      8px 4px,
+      8px 4px,
+      8px 0,
+      8px 4px,
+      8px 4px,
+      8px 0,
+      8px 4px,
+      8px 4px;
+    background-position:
+      0 50%,
+      0 calc(50% - 2px),
+      0 calc(50% + 2px),
+      50% 50%,
+      50% calc(50% - 2px),
+      50% calc(50% + 2px),
+      100% 50%,
+      100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  50% {
+    background-size:
+      8px 100%,
+      8px 4px,
+      8px 4px,
+      8px 0,
+      8px 4px,
+      8px 4px,
+      8px 0,
+      8px 4px,
+      8px 4px;
+    background-position:
+      0 50%,
+      0 calc(0% - 2px),
+      0 calc(100% + 2px),
+      50% 50%,
+      50% calc(50% - 2px),
+      50% calc(50% + 2px),
+      100% 50%,
+      100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  75% {
+    background-size:
+      8px 100%,
+      8px 4px,
+      8px 4px,
+      8px 100%,
+      8px 4px,
+      8px 4px,
+      8px 0,
+      8px 4px,
+      8px 4px;
+    background-position:
+      0 50%,
+      0 calc(0% - 2px),
+      0 calc(100% + 2px),
+      50% 50%,
+      50% calc(0% - 2px),
+      50% calc(100% + 2px),
+      100% 50%,
+      100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  95%,
+  100% {
+    background-size:
+      8px 100%,
+      8px 4px,
+      8px 4px,
+      8px 100%,
+      8px 4px,
+      8px 4px,
+      8px 100%,
+      8px 4px,
+      8px 4px;
+    background-position:
+      0 50%,
+      0 calc(0% - 2px),
+      0 calc(100% + 2px),
+      50% 50%,
+      50% calc(0% - 2px),
+      50% calc(100% + 2px),
+      100% 50%,
+      100% calc(0% - 2px),
+      100% calc(100% + 2px);
+  }
+}
+
+/* Circle loading indicator */
+.loader-2 {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #000 #0000;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}

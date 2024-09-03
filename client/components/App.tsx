@@ -1,15 +1,15 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import { Outlet } from 'react-router-dom'
+import Nav from './Nav'
+import { SearchProvider } from '../contexts/searchContext'
 
 function App() {
-  const { data } = useFruits()
-
   return (
-    <>
-      <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+    <SearchProvider>
+      <Nav />
+      <div>
+        <Outlet />
       </div>
-    </>
+    </SearchProvider>
   )
 }
 
