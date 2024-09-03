@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Crypto } from '../../models/crypto'
 import { Portfolio } from '../../models/dbModels'
-import CircleLoadingIndicator from './CircleLoadingIndicator'
+import CircleLoadingIndicator from './CircleLoadingINdicator'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 interface AddToPortfolioButtonProps {
